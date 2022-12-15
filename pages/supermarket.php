@@ -52,9 +52,9 @@ if (!isset($_SESSION['username'])) {
                       </td>
                       <td><?= $em['Number_of_employees'] ?></td>
                       <td>
-                        <button data-bs-toggle="modal" data-bs-target="#viewSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
+                        <!-- <button data-bs-toggle="modal" data-bs-target="#viewSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           View
-                        </button>
+                        </button> -->
                         <button data-bs-toggle="modal" data-bs-target="#updateSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Update
                         </button>
