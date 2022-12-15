@@ -7,36 +7,35 @@ if (!isset($_SESSION['username'])) {
   require_once "./database.php";
   require "./components/head.php";
   $deid = $_SESSION['departID'];
-  $sql = "SELECT * FROM department";
-  $departmentArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+  $sql = "SELECT * FROM supermarket";
+  $supermarketArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 ?>
 
   <div id="main-content">
     <div class="page-heading">
       <div class="page-title mb-2">
         <h1 style="display:inline" class="me-4">Human resources</h1>
-        <div class="mb-4" <?php if ($_SESSION['role'] == 'admin') echo "style='display:inline'" ?>>
-          <button style="display:inline" data-bs-toggle="modal" data-bs-target="#insertEmployee" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['role'] != 'admin') echo 'hidden' ?>>
+        <div class="mb-4" <?php if ($_SESSION['lv'] == 100) echo "style='display:inline'" ?>>
+          <button style="display:inline" data-bs-toggle="modal" data-bs-target="#insertEmployee" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['lv'] != 100) echo 'hidden' ?>>
             Add employee
           </button>
         </div>
       </div>
       <section class="section">
         <?php
-        foreach ($departmentArray as $department) {
-          if ($department['departID'] == 'DE0001' || $department['departID'] == 'DE0002')
+        foreach ($supermarketArray as $supermarket) {
+          // if ($supermarket['departID'] == 'DE0001' || $supermarket['departID'] == 'DE0002')
+          //   continue;
+          $deid = $supermarket['SCode'];
+          if ($_SESSION['lv'] != 100 && $_SESSION['departID'] != $deid)
             continue;
-          $deid = $department['departID'];
-          if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'ceo' && $_SESSION['departID'] != $deid)
-            continue;
-          $sql = "SELECT * FROM employee 
-        INNER JOIN account ON employee.username = account.username WHERE employee.departID='$deid'";
+          $sql = "SELECT * FROM employee WHERE employee.Supermarket_Scode='$deid'";
           $emArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
         ?>
           <div class="card h-100 mb-4">
             <div class="card-header">
               <h3 class="card-title">
-                <img class="me-3" src="<?=$department['departAva']?>" style="width:30px;">Department: <?= $department['name'] ?>
+                <!-- <img class="me-3" src="<?=$department['departAva']?>" style="width:30px;">-->Department: <?= $supermarket['Name'] ?> 
               </h3>
             </div>
             <div class="card-body" style="width:100%">
@@ -47,7 +46,7 @@ if (!isset($_SESSION['username'])) {
                     <th>Role</th>
                     <th>Name</th>
                     <th>Salary</th>
-                    <th>Department</th>
+                    <th>Phone</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -55,23 +54,23 @@ if (!isset($_SESSION['username'])) {
                   <?php foreach ($emArray as $em) {
                   ?>
                     <tr>
-                      <td><?= $em['employeeID'] ?></td>
-                      <td><?= $em['role'] ?></td>
+                      <td><?= $em['ID'] ?></td>
+                      <td><?= $em['Role'] ?></td>
                       <td>
-                        <div class="avatar me-3">
+                        <!-- <div class="avatar me-3">
                           <img src="<?= $em['avatar'] ?>" style="object-fit: cover;" alt="" srcset="" />
-                        </div><?= $em['name'] ?>
+                        </div>--><?= $em['Last_name']." ".$em['First_name'] ?> 
                       </td>
-                      <td><?= $em['salary'] ?></td>
-                      <td><?= $department['name'] ?></td>
+                      <td><?= $em['Salary'] ?></td>
+                      <td><?= $em['Phone_number'] ?></td>
                       <td>
-                        <a href="./index.php?page=profile&employeeID=<?= $em['employeeID'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
+                        <a href="./index.php?page=profile&employeeID=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="index.php?page=employee-sethead-processing&username=<?= $em['username'] ?>&depart=<?= $em['departID'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['role'] != 'admin' || $em['role'] == 'head') echo "hidden" ?>>
+                        <a href="index.php?page=employee-sethead-processing&username=<?= $em['First_name'] ?>&depart=<?= $em['Supermarket_Scode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100 || $em['Role'] == 'Manager') echo "hidden" ?>>
                           Set head
                         </a>
-                        <a href="./index.php?page=employee-delete-processing&username=<?= $em['username'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['role'] != 'admin' || $em['role'] == 'head') echo "hidden" ?>>
+                        <a href="./index.php?page=employee-delete-processing&username=<?= $em['First_name'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Delete
                         </a>
                       </td>
@@ -157,12 +156,26 @@ if (!isset($_SESSION['username'])) {
           <div class="modal-body">
             <div class="row">
               <div class="col-md-4">
-                <label>Name</label><span class="text-danger">*</span>
+                <label>First name</label><span class="text-danger">*</span>
               </div>
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
-                    <input type="text" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
+                    <input type="text" name="firstName" class="form-control" placeholder="First name..." id="first-name-icon" required autocomplete="off" />
+                    <div class="form-control-icon">
+                      <i class="bi bi-person"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label>Last name</label><span class="text-danger">*</span>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group has-icon-left">
+                  <div class="position-relative">
+                    <input type="text" name="lastName" class="form-control" placeholder="Last name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
                       <i class="bi bi-person"></i>
                     </div>
@@ -207,20 +220,6 @@ if (!isset($_SESSION['username'])) {
                     <input type="date" name="dob" class="form-control" placeholder="Date of birth..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
                       <i class="bi bi-calendar"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <label>Nationality</label>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group has-icon-left">
-                  <div class="position-relative">
-                    <input type="text" name="nationality" class="form-control" placeholder="Nationality..." id="first-name-icon" required autocomplete="off" />
-                    <div class="form-control-icon">
-                      <i class="bi bi-globe"></i>
                     </div>
                   </div>
                 </div>
@@ -283,15 +282,15 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <select name="role" id="role" required style="width:100%">
                       <option selected hidden>Please choose a role...</option>
-                      <option value="officer">Officer</option>
-                      <option value="head">Head</option>
+                      <option value="Manager">Manager</option>
+                      <option value="Cashier">Cashier</option>
                     </select>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
-                <label>Department</label><span class="text-danger">*</span>
+                <label>Supermarket</label><span class="text-danger">*</span>
               </div>
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
@@ -299,11 +298,11 @@ if (!isset($_SESSION['username'])) {
                     <select name="departID" id="departID" required style="width:100%">
                       <option selected hidden>Please choose a department...</option>
                       <?php
-                      foreach ($departmentArray as $depart) {
-                        if ($depart['departID'] == 'DE0001' || $depart['departID'] == 'DE0002')
-                          continue;
+                      foreach ($supermarketArray as $supermarket) {
+                        // if ($depart['departID'] == 'DE0001' || $depart['departID'] == 'DE0002')
+                        //   continue;
                       ?>
-                        <option value="<?= $depart['departID'] ?>"><?= $depart['name'] ?></option>
+                        <option value="<?= $supermarket['SCode'] ?>"><?= $supermarket['Name'] ?></option>
                       <?php
                       }
                       ?>
@@ -320,9 +319,9 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <select name="gender" id="gender" required style="width:100%">
                       <option selected hidden>Please choose employee's gender...</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>

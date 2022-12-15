@@ -6,11 +6,10 @@ if (!isset($_SESSION['username'])) {
   // Page
   require_once "./database.php";
   $employeeID = $_GET['employeeID'];
-  $sql = "SELECT * FROM employee 
-        INNER JOIN account ON employee.username = account.username WHERE employee.employeeID='$employeeID'";
+  $sql = "SELECT * FROM (employee LEFT JOIN login_info ON employee.First_name = login_info.username) WHERE employee.ID='$employeeID'";
   $em = $conn->query($sql)->fetch_all(MYSQLI_ASSOC)[0];
-  $sql = "SELECT * FROM department ";
-  $departmentArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+  $sql = "SELECT * FROM supermarket";
+  $supermarketArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
   require "./components/head.php";
 ?>
   <!-- ///////////////////////////////////////////////////////// -->
@@ -50,31 +49,19 @@ if (!isset($_SESSION['username'])) {
 
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title"><?= $em['name'] ?></h4>
+            <h4 class="card-title"><?= $em['Last_name']." ".$em['First_name'] ?></h4>
           </div>
           <div class="card-body">
-            <div class="avatar me-3">
+            <!-- <div class="avatar me-3">
               <img src="<?= $em['avatar'] ?>" style="object-fit: cover; height:130px; width:130px" alt="" srcset="" />
-            </div>
-            <form action="./index.php?page=avatar-upload-processing&emid=<?= $em['employeeID'] ?>" method="post" enctype="multipart/form-data" <?php if ($_SESSION['employeeID'] != $employeeID) echo "hidden"; ?>>
-              <div class="col-md-6 mb-1" style="margin-top:20px;">
-                <fieldset>
-                  <div class="input-group">
-                    <input type="file" name="fileToUpload" id="fileToUpload inputGroupFile04" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                    <button class="btn btn-primary" type="submit" id="inputGroupFileAddon04" value="Upload Image">
-                      Change your avatar
-                    </button>
-                  </div>
-                </fieldset>
-              </div>
-            </form>
-            <form class="form form-horizontal" style="margin-top: 20px;">
+            </div> -->
+            <form class="form form-horizontal">
               <div class="row">
                 <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Employee ID</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['employeeID'] ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['ID'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-id-card"></i>
                       </div>
@@ -86,7 +73,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Name</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['name'] ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['Last_name']." ".$em['First_name'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-person"></i>
                       </div>
@@ -98,7 +85,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Username</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['username'] ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['First_name'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-user"></i>
                       </div>
@@ -110,7 +97,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Password</label>
                     <div class="position-relative">
-                      <?php $pass = $_SESSION['role'] == 'admin' ? 'text' : 'password'; ?>
+                      <?php $pass = $_SESSION['lv'] == 100 ? 'text' : 'password'; ?>
                       <input type="<?= $pass ?>" id="first-name-column" class="form-control" value="<?= $em['password'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-lock"></i>
@@ -123,7 +110,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Gender</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['gender'] ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['Gender'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-venus-mars"></i>
                       </div>
@@ -135,7 +122,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Date of birth</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= date_format(date_create($em['dob']), "d/m/Y") ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?= date_format(date_create($em['Date_of_birth']), "d/m/Y") ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-cake-candles"></i>
                       </div>
@@ -145,21 +132,9 @@ if (!isset($_SESSION['username'])) {
 
                 <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
-                    <label for="first-name-column">Nationality</label>
-                    <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['nationality'] ?>" readonly />
-                      <div class="form-control-icon">
-                        <i class="fa-solid fa-globe"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-12">
-                  <div class="form-group has-icon-left">
                     <label for="first-name-column">Address</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['address'] ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['Address'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-location-dot"></i>
                       </div>
@@ -171,7 +146,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Phone number</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['phone'] ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['Phone_number'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-phone"></i>
                       </div>
@@ -183,7 +158,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Salary</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['salary'] ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['Salary'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-dollar-sign"></i>
                       </div>
@@ -195,7 +170,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Start date</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= date_format(date_create($em['startDate']), "d/m/Y") ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= date_format(date_create($em['Start_date']), "d/m/Y") ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-calendar-days"></i>
                       </div>
@@ -205,9 +180,9 @@ if (!isset($_SESSION['username'])) {
 
                 <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
-                    <label for="first-name-column">Department</label>
+                    <label for="first-name-column">Supermarket</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['departID'] ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['Supermarket_Scode'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-building"></i>
                       </div>
@@ -217,7 +192,7 @@ if (!isset($_SESSION['username'])) {
               </div>
             </form>
             <div style="text-align:right">
-              <button data-bs-toggle="modal" data-bs-target="#updateEmployee" class="btn btn-primary" <?php if ($_SESSION['role'] != 'admin') echo "hidden" ?>>
+              <button data-bs-toggle="modal" data-bs-target="#updateEmployee" class="btn btn-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                 Update
               </button>
             </div>
@@ -229,7 +204,7 @@ if (!isset($_SESSION['username'])) {
                   <h1 class="modal-title fs-5">Update employee</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="./index.php?page=employee-update-processing&emid=<?= $em['employeeID'] ?>" method="POST" class="form form-horizontal">
+                <form action="./index.php?page=employee-update-processing&emid=<?= $em['ID'] ?>" method="POST" class="form form-horizontal">
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-md-4">
@@ -238,7 +213,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <textarea placeholder="Address..." name="address" class="form-control" id="first-name-icon" autocomplete="off" style="resize:none;" rows="5" cols="30"><?= $em['address'] ?></textarea>
+                            <textarea placeholder="Address..." name="address" class="form-control" id="first-name-icon" autocomplete="off" style="resize:none;" rows="5" cols="30"><?= $em['Address'] ?></textarea>
                             <div class="form-control-icon">
                               <i class="bi bi-house"></i>
                             </div>
@@ -251,7 +226,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="phone" class="form-control" value="<?= $em['phone'] ?>" placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="phone" class="form-control" value="<?= $em['Phone_number'] ?>" placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
                               <i class="bi bi-telephone"></i>
                             </div>
@@ -264,7 +239,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="number" value="<?= $em['salary'] ?>" name="salary" class="form-control" placeholder="Salary..." id="first-name-icon" required autocomplete="off" />
+                            <input type="number" value="<?= $em['Salary'] ?>" name="salary" class="form-control" placeholder="Salary..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
                               <i class="bi bi-currency-dollar"></i>
                             </div>
@@ -279,18 +254,18 @@ if (!isset($_SESSION['username'])) {
                         }
                       </style>
 
-                      <div class="col-md-4" <?php if ($em['role'] == "head") echo "hidden" ?>>
-                        <label>Department</label>
+                      <div class="col-md-4" <?php if ($em['Role'] == "Manager") echo "hidden" ?>>
+                        <label>Supermarket</label>
                       </div>
                       <div class="col-md-8">
                         <div class="form-group">
-                          <select name="departID" value="<?= $em['departID'] ?>" <?php if ($em['role'] == "head") echo "hidden" ?>>
+                          <select name="departID" value="<?= $em['Supermarket_Scode'] ?>" <?php if ($em['Role'] == "Manager") echo "hidden" ?> style="width:100%;">
                             <?php
-                            foreach ($departmentArray as $depart) {
-                              if ($depart['name'] == 'Admin' || $depart['departID'] == 'DE0001')
-                                continue;
+                            foreach ($supermarketArray as $supermarket) {
+                              // if ($depart['name'] == 'Admin' || $depart['departID'] == 'DE0001')
+                              //   continue;
                             ?>
-                              <option value="<?= $depart['departID'] ?>"><?= $depart['name'] ?></option>
+                              <option value="<?= $supermarket['SCode'] ?>"><?= $supermarket['Name'] ?></option>
                             <?php
                             }
                             ?>

@@ -13,13 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = validate($_POST['phone']);
     $salary = validate($_POST['salary']);
     $departID = validate($_POST['departID']);
-    $sql = "UPDATE employee SET address = '$address' WHERE employeeID='$emid'";
+    $sql = "UPDATE employee SET Address = '$address' WHERE ID='$emid'";
     $conn->query($sql);
-    $sql = "UPDATE employee SET phone = '$phone' WHERE employeeID='$emid'";
+    $sql = "UPDATE employee SET Phone_number = '$phone' WHERE ID='$emid'";
     $conn->query($sql);
-    $sql = "UPDATE employee SET salary = '$salary' WHERE employeeID='$emid'";
+    $sql = "UPDATE employee SET Salary = '$salary' WHERE ID='$emid'";
     $conn->query($sql);
-    $sql = "UPDATE employee SET departID = '$departID' WHERE employeeID='$emid'";
+    $sql = "UPDATE employee SET Supermarket_Scode = '$departID' WHERE ID='$emid'";
     $conn->query($sql);
     header("location: ./index.php?page=profile&employeeID=$emid");
 }

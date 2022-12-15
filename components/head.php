@@ -76,37 +76,37 @@
           <ul class="menu">
             <li class="sidebar-title">Menu</li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'employee' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['role'] == 'officer') echo "hidden" ?>>
+            <li class="sidebar-item <?php if ($_GET['page'] == 'employee' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
               <a href="./index.php?page=employee" class="sidebar-link">
                 <i class="bi bi-person-fill"></i>
                 <span>Employees</span>
               </a>
             </li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'taskme') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'ceo') echo "hidden" ?>>
-              <a href="./index.php?page=taskme" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'supplier') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
+              <a href="./index.php?page=supplier" class="sidebar-link">
                 <i class="bi bi-clipboard-check-fill"></i>
-                <span>My Tasks</span>
+                <span>Suppliers</span>
               </a>
             </li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'taskmanage') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer') echo "hidden" ?>>
-              <a href="./index.php?page=taskmanage" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'goods') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
+              <a href="./index.php?page=goods" class="sidebar-link">
                 <i class="fa-solid fa-list-check"></i>
-                <span>Task Management</span>
+                <span>Goods</span>
               </a>
             </li>
 
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'requestme') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'ceo') echo "hidden" ?>>
-              <a href="./index.php?page=requestme" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'supermarket') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
+              <a href="./index.php?page=supermarket" class="sidebar-link">
                 <i class="fa-solid fa-pen-to-square"></i>
-                <span>My Requests</span>
+                <span>Supermarkets</span>
               </a>
             </li>
 
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'requestmanage') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer') echo "hidden" ?>>
+            <!-- <li class="sidebar-item <?php if ($_GET['page'] == 'requestmanage') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer') echo "hidden" ?>>
               <a href="./index.php?page=requestmanage" class="sidebar-link">
                 <i class="fa-solid fa-scroll"></i>
                 <span>Requests Management</span>
@@ -118,7 +118,7 @@
                 <i class="bi bi-megaphone-fill"></i>
                 <span>Announcement</span>
               </a>
-            </li>
+            </li> -->
 
           </ul>
         </div>
@@ -145,48 +145,7 @@
                     <li class="dropdown-header">
                       <h6>Notifications</h6>
                     </li>
-                    <?php
-                    $deid = $_SESSION['departID'];
-                    $anArray = array();
-                    if ($_SESSION['role'] == 'ceo') {
-                      $sql = "SELECT * FROM announce
-                            JOIN employee ON announce.upperID = employee.employeeID
-                            ORDER BY announce.announceID DESC";
-                      $anArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-                    } else {
-                      $sql = "SELECT * FROM announce
-                              JOIN employee ON announce.upperID = employee.employeeID
-                              WHERE announce.departID='$deid' OR announce.departID='DE0001'
-                              ORDER BY announce.announceID DESC";
-                      $anArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-                    }
-                    $sql = "SELECT * FROM department WHERE departID='$deid'";
-                    $departName = $conn->query($sql)->fetch_all(MYSQLI_ASSOC)[0]['name'];
-                    ?>
                     <div style="height: 300px;overflow-y: scroll;">
-                      <?php
-                      foreach ($anArray as $an) {
-                      ?>
-
-                        <li class="dropdown-item notification-item">
-                          <a class="d-flex align-items-center" role="button">
-                            <div class="notification-icon">
-                              <div class="avatar me-3">
-                                <img src="<?= $an['avatar'] ?>" style="object-fit: cover;width:50px; height:50px" alt="" srcset="" />
-                              </div><?= $an['name'] ?>
-                            </div>
-                            <div class=" notification-text ms-4">
-                              <p class="notification-title font-bold">
-                                <?= $an['title'] ?>
-                              </p>
-                              <p class="notification-subtitle font-thin text-sm" style="white-space: nowrap; width: 300px; overflow: hidden;text-overflow: ellipsis;">
-                                <?= $an['description'] ?>
-                              </p>
-                            </div>
-                          </a>
-                        </li>
-
-                      <?php } ?>
                     </div>
                     <li>
                       <p class="text-center py-2 mb-0">
@@ -201,15 +160,11 @@
                   <div class="user-menu d-flex">
                     <div class="user-name text-end me-3">
                       <h6 class="mb-0 text-gray-600"><?= $_SESSION['name'] ?></h6>
-                      <p class="mb-0 text-sm text-gray-600"><?= $_SESSION['role'] ?></p>
+                      <p class="mb-0 text-sm text-gray-600"><?php if($_SESSION['lv'] == 100) echo "Manager"; else echo "Cashier"; ?></p>
                     </div>
                     <div class="user-img d-flex align-items-center">
                       <div class="avatar avatar-md">
-                        <?php
-                        $emid = $_SESSION['employeeID'];
-                        $avasrc = $conn->query("SELECT * FROM employee WHERE employeeID = '$emid'")->fetch_all(MYSQLI_ASSOC)[0]['avatar'];
-                        ?>
-                        <img src="<?= $avasrc ?>" style="object-fit: cover;" />
+                        <img src="assets\images\faces\2.jpg" style="object-fit: cover;" />
                       </div>
                     </div>
                   </div>

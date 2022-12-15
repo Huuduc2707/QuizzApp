@@ -3,5 +3,5 @@
 $serverName = "localhost:3307";
 $user = 'root';
 $pass = '';
-$dbName = 'webpro';
+$dbName = 'db';
 $conn = new mysqli($serverName, $user, $pass, $dbName) or die("Unable to connect");

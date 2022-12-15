@@ -15,22 +15,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // $sql = "SELECT * FROM user
     // where username='$username' and password='$password'";
-    $sql = "SELECT * FROM account
-    LEFT JOIN employee ON account.username = employee.username WHERE account.username = '$username' AND account.password = '$password'";
+    $sql = "SELECT * FROM login_info
+    JOIN employee ON login_info.username = employee.First_name WHERE login_info.username = '$username' AND login_info.password = '$password'";
     $result = $conn->query($sql);
     $returnUserArray = $result->fetch_all(MYSQLI_ASSOC);
     if (count($returnUserArray) == 1) {
         $loginuser = $returnUserArray[0];
         $_SESSION['username'] = $username;
-        $_SESSION['role'] = $loginuser["role"];
+        $_SESSION['lv'] = $loginuser["userlevel"];
         $cookie_name = "user";
         $cookie_value = $username;
         setcookie($cookie_name, $cookie_value, time() + (3600), "/");
-        $_SESSION['employeeID'] = $loginuser['employeeID'];
-        $_SESSION['name'] = $loginuser['name'];
-        $_SESSION['departID'] = $loginuser["departID"];
-        $_SESSION['avatar'] = $loginuser['avatar'];
-        if ($loginuser['role'] != "officer")
+        $_SESSION['employeeID'] = $loginuser['ID'];
+        $_SESSION['name'] = $loginuser['Last_name']." ".$loginuser['First_name'];
+        $_SESSION['departID'] = $loginuser["Supermarket_Scode"];
+        //$_SESSION['avatar'] = $loginuser['avatar'];
+        if ($loginuser['role'] != "Cashier")
             header('location: ../index.php?page=employee');
         else
             header('location: ../index.php?page=taskme');
