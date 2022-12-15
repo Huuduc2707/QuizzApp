@@ -87,7 +87,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="brand" value="<?=$em['Brand']?>" class="form-control"  placeholder="Brand..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-copyright"></i>
                             </div>
                           </div>
                         </div>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="name" value="<?=$em['Name']?>" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-star"></i>
                             </div>
                           </div>
                         </div>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="number" name="price" value="<?=$em['Price']?>" class="form-control"  placeholder="Price..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-dollar-sign"></i>
                             </div>
                           </div>
                         </div>
@@ -134,7 +134,7 @@ if (!isset($_SESSION['username'])) {
                             </select>
                             <!-- <input type="text" name="type" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" /> -->
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-collection"></i>
                             </div>
                           </div>
                         </div>
@@ -146,10 +146,10 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <textarea name="description" class="form-control" id="first-name-icon" required cols="30" rows="3"><?=$em['Description']?></textarea>
+                            <textarea name="description" class="form-control" id="first-name-icon" style="resize:none;" required cols="30" rows="5"><?=$em['Description']?></textarea>
                             <!-- <input type="text" name="description" class="form-control"  placeholder="Description..." id="first-name-icon" required autocomplete="off" /> -->
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-list-columns-reverse"></i>
                             </div>
                           </div>
                         </div>
@@ -182,7 +182,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="name" class="form-control" value="<?= $em['Brand']?>" placeholder="Name..." id="first-name-icon" required autocomplete="off" readonly/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-copyright"></i>
                             </div>
                           </div>
                         </div>
@@ -195,7 +195,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="location" class="form-control"  value="<?= $em['Name']?>" placeholder="Location..." id="first-name-icon" required autocomplete="off" readonly/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-star"></i>
                             </div>
                           </div>
                         </div>
@@ -208,7 +208,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="number_of_employees" class="form-control" value="<?= $em['Price']?>" placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" readonly/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-dollar-sign"></i>
                             </div>
                           </div>
                         </div>
@@ -222,7 +222,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="number_of_employees" class="form-control" value="<?= $em['Type']?>" placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" readonly/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-collection"></i>
                             </div>
                           </div>
                         </div>
@@ -234,9 +234,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <textarea cols="30" rows="3" class="form-control" id="first-name-icon" style="resize:none;"readonly><?= $em['Description']?></textarea>
+                            <textarea cols="30" rows="5" class="form-control" id="first-name-icon" style="resize:none;"readonly><?= $em['Description']?></textarea>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-list-columns-reverse"></i>
                             </div>
                           </div>
                         </div>
@@ -339,7 +339,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="brand" class="form-control" placeholder="Brand..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="fa-regular fa-copyright"></i>
                     </div>
                   </div>
                 </div>
@@ -353,7 +353,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="fa-regular fa-star"></i>
                     </div>
                   </div>
                 </div>
@@ -367,7 +367,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="number" name="price" class="form-control" placeholder="Price..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person-vcard"></i>
+                      <i class="fa-regular fa-dollar-sign"></i>
                     </div>
                   </div>
                 </div>
@@ -388,7 +388,7 @@ if (!isset($_SESSION['username'])) {
                       <option value="Health and Personal Care">Health and Personal Care</option>
                     </select>
                     <div class="form-control-icon">
-                      <i class="bi bi-shield-lock"></i>
+                      <i class="bi bi-collection"></i>
                     </div>
                   </div>
                 </div>
@@ -400,9 +400,10 @@ if (!isset($_SESSION['username'])) {
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
-                    <input type="text" name="description" class="form-control" placeholder="Description..." id="first-name-icon" required autocomplete="off" />
+                    <textarea name="description" class="form-control" id="first-name-icon" style="resize:none;" required cols="30" rows="5" placeholder="Description..."></textarea>
+                    <!-- <input type="text" name="description" class="form-control" placeholder="Description..." id="first-name-icon" required autocomplete="off" /> -->
                     <div class="form-control-icon">
-                      <i class="bi bi-person-vcard"></i>
+                      <i class="bi bi-list-columns-reverse"></i>
                     </div>
                   </div>
                 </div>

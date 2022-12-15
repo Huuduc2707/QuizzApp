@@ -79,9 +79,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="name" value="<?= $em['Name']?> "class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-shop"></i>
                             </div>
                           </div>
                         </div>
@@ -92,9 +92,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="location" class="form-control"  placeholder="Location..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="location" value="<?= $em['Location']?>" class="form-control"  placeholder="Location..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-geo-alt-fill"></i>
                             </div>
                           </div>
                         </div>
@@ -105,9 +105,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="number_of_employees" class="form-control"  placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="number_of_employees" value="<?= $em['Number_of_employees']?>" class="form-control"  placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-regular fa-hashtag"></i>
                             </div>
                           </div>
                         </div>
@@ -209,7 +209,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="bi bi-shop"></i>
                     </div>
                   </div>
                 </div>
@@ -223,21 +223,21 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="location" class="form-control" placeholder="Location..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="bi bi-geo-alt-fill"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
-                <label>Number of employees</label><span class="text-danger">*</span>
+                <label>No.employees</label><span class="text-danger">*</span>
               </div>
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
                     <input type="text" name="number_of_employees" class="form-control" placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person-vcard"></i>
+                      <i class="fa-regular fa-hashtag"></i>
                     </div>
                   </div>
                 </div>
