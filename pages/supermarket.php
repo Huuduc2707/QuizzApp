@@ -52,10 +52,10 @@ if (!isset($_SESSION['username'])) {
                       </td>
                       <td><?= $em['Number_of_employees'] ?></td>
                       <td>
-                        <!-- <a href="./index.php?page=profile&employeeID=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
+                        <button data-bs-toggle="modal" data-bs-target="#viewSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           View
-                        </a> -->
-                        <button data-bs-toggle="modal" data-bs-target="#updateSupermarket" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
+                        </button>
+                        <button data-bs-toggle="modal" data-bs-target="#updateSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Update
                         </button>
                         <a href="./index.php?page=supermarket-delete-processing&id=<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
@@ -63,6 +63,64 @@ if (!isset($_SESSION['username'])) {
                         </a>
                       </td>
                     </tr>
+                      <div class="modal fade" id="updateSupermarket<?= $em['SCode'] ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Update Supermarket</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="index.php?page=supermarket-update-processing&id=<?= $em['SCode'] ?>" method="POST" class="form form-horizontal">
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label>Name</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Location</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="location" class="form-control"  placeholder="Location..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Number of employees</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="number_of_employees" class="form-control"  placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+  </div>
                     <!-- <div class="modal fade" id="viewEmployee<?= $em['employeeID'] ?>" tabindex="-1" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                         <div class="modal-content">
@@ -195,65 +253,7 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 
-  <div class="modal fade" id="updateSupermarket" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5">Update Supermarket</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="index.php?page=supermarket-update-processing&id=<?= $em['SCode'] ?>" method="POST" class="form form-horizontal">
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <label>Name</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <label>Location</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="location" class="form-control"  placeholder="Location..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <label>Number of employees</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="number_of_employees" class="form-control"  placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-  </div>
 
 <?php
   require "./components/foot.php";

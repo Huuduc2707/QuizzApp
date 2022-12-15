@@ -57,7 +57,7 @@ if (!isset($_SESSION['username'])) {
                         <!-- <a href="./index.php?page=profile&employeeID=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a> -->
-                        <button data-bs-toggle="modal" data-bs-target="#updateSupplier" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
+                        <button data-bs-toggle="modal" data-bs-target="#updateSupplier<?=$em['ID']?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Update
                         </button>
                         <a href="./index.php?page=supplier-delete-processing&id=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
@@ -65,6 +65,77 @@ if (!isset($_SESSION['username'])) {
                         </a>
                       </td>
                     </tr>
+                      <div class="modal fade" id="updateSupplier<?=$em['ID']?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Update Supplier</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="index.php?page=supplier-update-processing&id=<?= $em['ID'] ?>" method="POST" class="form form-horizontal">
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label>Name</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Location</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="location" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Email address </label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="email" class="form-control"  placeholder="Email..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>Phone number</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group has-icon-left">
+                          <div class="position-relative">
+                            <input type="text" name="phone" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
+                            <div class="form-control-icon">
+                              <i class="bi bi-telephone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+  </div>
                     <!-- <div class="modal fade" id="viewEmployee<?= $em['employeeID'] ?>" tabindex="-1" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                         <div class="modal-content">
@@ -210,77 +281,6 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 
-  <div class="modal fade" id="updateSupplier" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5">Update Supplier</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="index.php?page=supplier-update-processing&id=<?= $em['ID'] ?>" method="POST" class="form form-horizontal">
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <label>Name</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <label>Location</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="location" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <label>Email address </label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="email" class="form-control"  placeholder="Email..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <label>Phone number</label>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                          <div class="position-relative">
-                            <input type="text" name="phone" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
-                            <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-  </div>
 
 <?php
   require "./components/foot.php";
