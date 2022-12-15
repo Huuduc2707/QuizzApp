@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
   <div id="main-content">
     <div class="page-heading">
       <div class="page-title mb-2">
-        <h1 style="display:inline" class="me-4">Human resources</h1>
+        <h1 style="display:inline" class="me-4">Employee</h1>
         <div class="mb-4" <?php if ($_SESSION['lv'] == 100) echo "style='display:inline'" ?>>
           <button style="display:inline" data-bs-toggle="modal" data-bs-target="#insertEmployee" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['lv'] != 100) echo 'hidden' ?>>
             Add employee
@@ -70,7 +70,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="index.php?page=employee-sethead-processing&username=<?= $em['First_name'] ?>&depart=<?= $em['Supermarket_Scode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100 || $em['Role'] == 'Manager') echo "hidden" ?>>
                           Set head
                         </a>
-                        <a href="./index.php?page=employee-delete-processing&username=<?= $em['First_name'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
+                        <a href="./index.php?page=employee-delete-processing&username=<?= $em['First_name'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($em['Role'] == 'Manager') echo "hidden" ?>>
                           Delete
                         </a>
                       </td>

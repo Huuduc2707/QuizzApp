@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
     <?php
-      if ($_GET['page'] == 'announce') echo "Announcement";
-      if ($_GET['page'] == 'employee') echo "Human Resources";
+      if ($_GET['page'] == 'goods') echo "Goods";
+      if ($_GET['page'] == 'employee') echo "Employee";
       if ($_GET['page'] == 'profile') echo "Profile";
-      if ($_GET['page'] == 'requestmanage') echo "Request Management";
-      if ($_GET['page'] == 'requestme') echo "My Requests";
-      if ($_GET['page'] == 'taskmanage') echo "Task Management";
-      if ($_GET['page'] == 'taskme') echo "My Tasks";
+      if ($_GET['page'] == 'supplier') echo "Supplier";
+      if ($_GET['page'] == 'supermarket') echo "Supermarket";
+      // if ($_GET['page'] == 'taskmanage') echo "Task Management";
+      // if ($_GET['page'] == 'taskme') echo "My Tasks";
     ?>
 
   </title>
@@ -79,20 +79,20 @@
             <li class="sidebar-item <?php if ($_GET['page'] == 'employee' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
               <a href="./index.php?page=employee" class="sidebar-link">
                 <i class="bi bi-person-fill"></i>
-                <span>Employees</span>
+                <span>Employee</span>
               </a>
             </li>
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'supplier') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
               <a href="./index.php?page=supplier" class="sidebar-link">
-                <i class="bi bi-clipboard-check-fill"></i>
-                <span>Suppliers</span>
+                <i class="bi bi-shop-window"></i>
+                <span>Supplier</span>
               </a>
             </li>
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'goods') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
               <a href="./index.php?page=goods" class="sidebar-link">
-                <i class="fa-solid fa-list-check"></i>
+                <i class="fa-regular fa-star"></i>
                 <span>Goods</span>
               </a>
             </li>
@@ -100,8 +100,8 @@
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'supermarket') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
               <a href="./index.php?page=supermarket" class="sidebar-link">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>Supermarkets</span>
+                <i class="bi bi-shop"></i>
+                <span>Supermarket</span>
               </a>
             </li>
 
