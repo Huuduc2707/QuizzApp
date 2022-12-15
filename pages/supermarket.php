@@ -58,7 +58,7 @@ if (!isset($_SESSION['username'])) {
                         <button data-bs-toggle="modal" data-bs-target="#updateSupermarket" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Update
                         </button>
-                        <a href="./index.php?page=supermarket-delete-processing&id=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
+                        <a href="./index.php?page=supermarket-delete-processing&id=<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
                           Delete
                         </a>
                       </td>
@@ -172,12 +172,12 @@ if (!isset($_SESSION['username'])) {
               </div>
 
               <div class="col-md-4">
-                <label>Number of employee</label><span class="text-danger">*</span>
+                <label>Number of employees</label><span class="text-danger">*</span>
               </div>
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
-                    <input type="email" name="number_of_employee" class="form-control" placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
+                    <input type="text" name="number_of_employees" class="form-control" placeholder="Number of employees..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
                       <i class="bi bi-person-vcard"></i>
                     </div>
@@ -202,7 +202,7 @@ if (!isset($_SESSION['username'])) {
                   <h1 class="modal-title fs-5">Update Supermarket</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="index.php?page=supermarket-update-processing&id=<?= $em['ID'] ?>" method="POST" class="form form-horizontal">
+                <form action="index.php?page=supermarket-update-processing&id=<?= $em['SCode'] ?>" method="POST" class="form form-horizontal">
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-md-4">
