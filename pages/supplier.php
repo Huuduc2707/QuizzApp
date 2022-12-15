@@ -81,9 +81,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="name" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="name" value="<?=$em['Name']?>" class="form-control"  placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-shop-window"></i>
                             </div>
                           </div>
                         </div>
@@ -94,9 +94,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="location" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="location" value="<?=$em['Location']?>" class="form-control"  placeholder="Location..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-geo-alt-fill"></i>
                             </div>
                           </div>
                         </div>
@@ -107,9 +107,9 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="email" class="form-control"  placeholder="Email..." id="first-name-icon" required autocomplete="off" />
+                            <input type="email" name="email" value="<?=$em['Email_address']?>" class="form-control"  placeholder="Email address..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-envelope"></i>
                             </div>
                           </div>
                         </div>
@@ -120,7 +120,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="phone" class="form-control"  placeholder="Phone..." id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="phone" value="<?=$em['Phone_number']?>" class="form-control"  placeholder="Phone number..." id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
                               <i class="bi bi-telephone"></i>
                             </div>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="bi bi-shop"></i>
                     </div>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="location" class="form-control" placeholder="Location..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person"></i>
+                      <i class="bi bi-geo-alt-fill"></i>
                     </div>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="email" name="email" class="form-control" placeholder="Email address..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-person-vcard"></i>
+                      <i class="bi bi-envelope"></i>
                     </div>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="phone" class="form-control" placeholder="Phone number..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-shield-lock"></i>
+                      <i class="bi bi-telephone"></i>
                     </div>
                   </div>
                 </div>

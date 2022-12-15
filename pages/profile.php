@@ -259,7 +259,7 @@ if (!isset($_SESSION['username'])) {
                       </div>
                       <div class="col-md-8">
                         <div class="form-group">
-                          <select name="departID" value="<?= $em['Supermarket_Scode'] ?>" <?php if ($em['Role'] == "Manager") echo "hidden" ?> style="width:100%;">
+                          <select name="departID" value="<?= $em['Supermarket_Scode'] ?>" <?php if ($em['Role'] == "Manager") echo "hidden" ?> style="width:100%;" id="first-name-icon">
                             <?php
                             foreach ($supermarketArray as $supermarket) {
                               // if ($depart['name'] == 'Admin' || $depart['departID'] == 'DE0001')
