@@ -61,7 +61,7 @@ if (!isset($_SESSION['username'])) {
                           <img src="<?= $em['avatar'] ?>" style="object-fit: cover;" alt="" srcset="" />
                         </div>--><?= $em['Last_name']." ".$em['First_name'] ?> 
                       </td>
-                      <td><?= $em['Salary'] ?></td>
+                      <td><?= number_format($em['Salary']) ?></td>
                       <td><?= $em['Phone_number'] ?></td>
                       <td>
                         <a href="./index.php?page=profile&employeeID=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-success">

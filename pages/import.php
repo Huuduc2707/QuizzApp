@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
                     <th>Name</th>
                     <th>Date</th>
                     <th>Supplier</th>
-                    <th>Supermarket SCode</th>
+                    <th>Supermarket ID</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -153,7 +153,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-shop"></i>
+                      <i class="bi bi-receipt"></i>
                     </div>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="date" name="date" class="form-control" placeholder="Date..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-geo-alt-fill"></i>
+                      <i class="bi bi-calendar"></i>
                     </div>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="supplier_id" class="form-control" placeholder="Supplier ID..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="fa-regular fa-hashtag"></i>
+                      <i class="bi bi-person-badge"></i>
                     </div>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="supermarket_scode" class="form-control" placeholder="Supermarket SCode..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="fa-regular fa-hashtag"></i>
+                      <i class="bi bi-shop"></i>
                     </div>
                   </div>
                 </div>

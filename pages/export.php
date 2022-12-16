@@ -155,7 +155,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="date" name="date" class="form-control" placeholder="Date..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-shop"></i>
+                      <i class="bi bi-calendar"></i>
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="name" name="name" class="form-control" placeholder="Name..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-geo-alt-fill"></i>
+                      <i class="bi bi-shop"></i>
                     </div>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="cashier_id" class="form-control" placeholder="Cashier ID..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="fa-regular fa-hashtag"></i>
+                      <i class="bi bi-person-badge"></i>
                     </div>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="customer_id" class="form-control" placeholder="Customer ID..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="fa-regular fa-hashtag"></i>
+                      <i class="bi bi-person"></i>
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="saving_point_policy" class="form-control" placeholder="Saving Point Policy..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="fa-regular fa-hashtag"></i>
+                      <i class="bi bi-piggy-bank"></i>
                     </div>
                   </div>
                 </div>

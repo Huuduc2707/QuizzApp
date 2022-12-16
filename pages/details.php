@@ -45,6 +45,7 @@ if (!isset($_SESSION['username'])) {
                     <th>Cashier Name</th>
                     <th>Customer Name</th>
                     <th>Goods Name</th>
+                    <th>Type</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total cost</th>
@@ -57,26 +58,14 @@ if (!isset($_SESSION['username'])) {
                       <td><?= $em['Date'] ?></td>
                       <td><?= $em['Name'] ?></td>
                       <td>
-                        <!-- <div class="avatar me-3">
-                          <img src="<?= $em['avatar'] ?>" style="object-fit: cover;" alt="" srcset="" />
-                        </div>--><?= $em['Cashier_last']." ".$em['Cashier_first']?> 
+                        <?= $em['Cashier_last']." ".$em['Cashier_first']?> 
                       </td>
                       <td><?= $em['Customer_last']." ".$em['Customer_first']?></td>
                       <td><?= $em['Goods_name'] ?></td>
+                      <td><?= $em['Type'] ?></td>
                       <td><?= number_format($em['Price']) ?></td>
                       <td><?= number_format($em['Quantity']) ?></td>
                       <td><?= number_format($em['Price']*$em['Quantity']) ?></td>
-                      <td>
-                        <!-- <button data-bs-toggle="modal" data-bs-target="#viewSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
-                          View
-                        </button> -->
-                        <!-- <button data-bs-toggle="modal" data-bs-target="#updateSupermarket<?= $em['SCode'] ?>" class="btn btn-sm rounded-pill btn-outline-primary" <?php if ($_SESSION['lv'] != 100) echo "hidden" ?>>
-                          Update
-                        </button> -->
-                        <!-- <a href="./index.php?page=details?id=<?= $em['ID'] ?>" class="btn btn-sm rounded-pill btn-outline-danger" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
-                          View
-                        </a> -->
-                      </td>
                     </tr>
                     <!-- <div class="modal fade" id="viewEmployee<?= $em['employeeID'] ?>" tabindex="-1" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">

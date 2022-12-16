@@ -107,14 +107,14 @@
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'import') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
               <a href="./index.php?page=import" class="sidebar-link">
-                <i class="fa-regular fa-star"></i>
+                <i class="bi bi-file-earmark-check"></i>
                 <span>Import bill</span>
               </a>
             </li>
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'export') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
               <a href="./index.php?page=export" class="sidebar-link">
-                <i class="fa-regular fa-star"></i>
+                <i class="bi bi-file-earmark-excel"></i>
                 <span>Export bill</span>
               </a>
             </li>
