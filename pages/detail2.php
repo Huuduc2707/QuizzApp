@@ -8,8 +8,8 @@ if (!isset($_SESSION['username'])) {
   require "./components/head.php";
   $deid = $_SESSION['departID'];
   $id = $_GET['id'];
-  $sql = "select ib.Date, ig.Quantity, ig.Total_cost, s.Name Supplier, sp.Name, g.Name Goods_name, g.Price
-        from import_bill ib JOIN import_goods ig ON ib.ID = ig.Import_Bill_ID
+  $sql = "SELECT ib.Date, ig.Quantity, ig.Total_cost, s.Name Supplier, sp.Name, g.Name Goods_name, g.Price
+        FROM import_bill ib JOIN import_goods ig ON ib.ID = ig.Import_Bill_ID
         JOIN supplier s ON ib.Supplier_ID = s.ID
         JOIN goods g ON ig.Goods_ID = g.ID
         JOIN supermarket sp ON sp.SCode = ib.Supermarket_Scode
