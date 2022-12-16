@@ -11,8 +11,8 @@
       if ($_GET['page'] == 'profile') echo "Profile";
       if ($_GET['page'] == 'supplier') echo "Supplier";
       if ($_GET['page'] == 'supermarket') echo "Supermarket";
-      // if ($_GET['page'] == 'taskmanage') echo "Task Management";
-      // if ($_GET['page'] == 'taskme') echo "My Tasks";
+      if ($_GET['page'] == 'import') echo "Import";
+      if ($_GET['page'] == 'export') echo "Export";
     ?>
 
   </title>
@@ -102,6 +102,20 @@
               <a href="./index.php?page=supermarket" class="sidebar-link">
                 <i class="bi bi-shop"></i>
                 <span>Supermarket</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item <?php if ($_GET['page'] == 'import') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
+              <a href="./index.php?page=import" class="sidebar-link">
+                <i class="fa-regular fa-star"></i>
+                <span>Import bill</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item <?php if ($_GET['page'] == 'export') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
+              <a href="./index.php?page=export" class="sidebar-link">
+                <i class="fa-regular fa-star"></i>
+                <span>Export bill</span>
               </a>
             </li>
 

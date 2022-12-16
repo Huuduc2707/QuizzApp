@@ -30,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['name'] = $loginuser['Last_name']." ".$loginuser['First_name'];
         $_SESSION['departID'] = $loginuser["Supermarket_Scode"];
         //$_SESSION['avatar'] = $loginuser['avatar'];
-        if ($loginuser['role'] != "Cashier")
+        if ($loginuser['Role'] != "Cashier")
             header('location: ../index.php?page=employee');
         else
-            header('location: ../index.php?page=taskme');
+            header('location: ../index.php?page=import');
 
         // mysqli_close($conn);
         // if ($_SESSION['level'] == 'admin'){
