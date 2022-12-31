@@ -94,7 +94,7 @@ body{
 }
 
 .max-score-area .stage-img{
-    background-image: url('./stage.png');
+    background-image: url('/DB_Assignment/assets/images/stage.png');
     width: 300px;
     height: 300px;
     background-size: contain;
@@ -208,7 +208,7 @@ body{
 }
 
 .result-report-owner .result-question .header .image{
-    background-image: url("./QIMG.png");
+    background-image: url("/DB_Assignment/assets/images/QIMG.png");
     width: 150px;
     height: 100px;
     background-size: contain;

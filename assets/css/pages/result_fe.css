@@ -137,7 +137,7 @@ body{
 }
 
 .result-report .result-question .header .image{
-    background-image: url("./QIMG.png");
+    background-image: url("/DB_Assignment/assets/images/QIMG.png");
     width: 150px;
     height: 100px;
     background-size: contain;

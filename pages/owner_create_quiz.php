@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="owner_create_quiz.css">
+    <link rel="stylesheet" href="../assets/css/pages/owner_create_quiz.css">
     <title>Kahoot View Owner FE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -24,7 +24,7 @@
         </div>
         <div class="input-form-quiz-gen">
             <label for="quiz-des-create">Quiz's description</label>
-            <textarea type="text" name="quiz-des-create" placeholder="Enter description about the quiz..."></textarea>
+            <textarea type="text" name="quiz-des-create" placeholder="Enter description about the quiz..." style="resize:none;"></textarea>
             <div></div>
         </div>
         <div class="question-create-state">
@@ -92,7 +92,6 @@
             <button name="confirm-quiz-button">Confirm</button>
         </div>
     </div>
-    <script src="owner_create_quiz.js" type="module"></script>
 </body>
 
 </html>

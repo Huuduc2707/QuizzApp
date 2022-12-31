@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="play_quiz.css">
+    <link rel="stylesheet" href="../assets/css/pages/play_quiz.css">
     <title>Kahoot Play FE</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
     
         <div class="question-body-box">
             <div class="question-body-countdown"></div>
-            <div class="question-body-img" title="Question Image" src="./QIMG.png"></div>
+            <div class="question-body-img" title="Question Image"></div>
         </div>
     
         <div class="options-box">
@@ -40,6 +40,6 @@
         </div>
     
     </div>
-    <script src="play_quiz.js" type="module"></script>
+    <script src="../assets/js/pages/play_quiz.js" type="module"></script>
 </body>
 </html>
