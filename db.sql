@@ -132,7 +132,7 @@ END
 -- procedure to update quiz's lastModified field
 DROP PROCEDURE IF EXISTS updateQuizLastModified;
 
-CREATE PROCEDURE updateQuizLastModified(IN quizId INT)
-    UPDATE quiz SET lastModified = CURRENT_TIMESTAMP WHERE id = quizId;
+-- CREATE PROCEDURE updateQuizLastModified(IN quizId INT)
+--     UPDATE quiz SET lastModified = CURRENT_TIMESTAMP WHERE id = quizId;
 
 
