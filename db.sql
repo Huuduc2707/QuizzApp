@@ -48,25 +48,25 @@ FOR EACH ROW SET NEW.dateCreate = CURRENT_DATE;
 
 -- create question table
 CREATE TABLE IF NOT EXISTS question (
-    id          INT     NOT NULL,
+    id          INT     NOT NULL PRIMARY KEY AUTO_INCREMENT,
     content     VARCHAR(200)    NOT NULL,
     point       INT     DEFAULT 10,
     timeLimit   INT     DEFAULT 10,
     media       TEXT    DEFAULT NULL,
     quizId      INT     NOT NULL,
 
-    PRIMARY KEY (id, quizId),
+    -- PRIMARY KEY (id, quizId),
     FOREIGN KEY (`quizId`) REFERENCES `quiz` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- create option table
 CREATE TABLE IF NOT EXISTS `option` (
-    id          INT     NOT NULL,
+    id          INT     NOT NULL PRIMARY KEY AUTO_INCREMENT,
     content     VARCHAR(125)     NOT NULL,
     isAnswer    INT     DEFAULT 0,
     questionId  INT     NOT NULL,
 
-    PRIMARY KEY (id, questionId),
+    -- PRIMARY KEY (id, questionId),
     FOREIGN KEY (questionId) REFERENCES question (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
