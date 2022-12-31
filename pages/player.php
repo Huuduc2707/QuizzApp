@@ -40,7 +40,7 @@ if (!isset($_SESSION['username'])) {
                 </thead>
                 <tbody>
                   <?php foreach ($quizTrend as $quiz) {
-                    $sql = "SELECT MAX(score) AS max_score, COUNT(*) AS play_attempt, AVG(score) AS avg_score
+                    $sql = "SELECT MAX(score) AS max_score, COUNT(playDateTime) AS play_attempt, AVG(score) AS avg_score
                             FROM quiz JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id AND play_attempt.playerId = account.id 
                             WHERE account.id = \"$id\" AND quiz.id =\"".$quiz['id']."\"
                             GROUP BY play_attempt.quizId";
@@ -53,11 +53,11 @@ if (!isset($_SESSION['username'])) {
                   ?>
                     <tr>
                       <td><?= $quiz['name'] ?></td>
-                      <td><?= $quiz['play_attempt']?></td>
-                      <td><?= $quiz['avg_score']?></td>
-                      <td><?= ($exist)?$pA['play_attempt']:0?></td>
-                      <td><?= ($exist)?$pA['max_score']:0?></td>
-                      <td><?= ($exist)?$pA['avg_score']:0?></td>
+                      <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0?></td>
+                      <td><?= ($quiz['play_attempt'])?$quiz['avg_score']:0?></td>
+                      <td><?= ($pA['play_attempt'])?$pA['play_attempt']:0?></td>
+                      <td><?= ($pA['play_attempt'])?$pA['max_score']:0?></td>
+                      <td><?= ($pA['play_attempt'])?$pA['avg_score']:0?></td>
                       <td>
                         <a href="./index.php?page=viewQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View

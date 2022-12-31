@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
   require_once "./database.php";
   require "../DB_Assignment/assets/components/head.php";
   $id = $_SESSION['userID'];
-  $sql = "SELECT MAX(score) AS max_score, AVG(score) AS avg_score, COUNT(*) AS play_attempt, name, lastModified, dateCreate, quiz.id
+  $sql = "SELECT MAX(score) AS max_score, AVG(score) AS avg_score, COUNT(playDateTime) AS play_attempt, name, lastModified, dateCreate, quiz.id, score
           FROM quiz JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON quiz.id = play_attempt.quizId
           WHERE quiz.creatorId = \"$id\"
           GROUP BY quiz.id";
@@ -37,14 +37,13 @@ if (!isset($_SESSION['username'])) {
                     <th>Last modified</th>
                     <th>Num of questions</th>
                     <th>Num of attempts</th>
-                    <th>Best score</th>
                     <th>Average score</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach ($quizArray as $quiz) {
-                    $sql = "SELECT MAX(score) AS max_score, COUNT(*) AS question_num
+                    $sql = "SELECT MAX(score) AS max_score, COUNT(question.id) AS question_num
                             FROM quiz JOIN account ON creatorId = account.id 
                             LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id AND play_attempt.playerId = account.id 
                             JOIN question ON question.quizId = quiz.id
@@ -60,10 +59,9 @@ if (!isset($_SESSION['username'])) {
                     <tr>
                       <td><?= $quiz['name'] ?></td>
                       <td><?= date_format(date_create($quiz['lastModified']), "d/m/Y H:i:s") ?></td>
-                      <td><?= ($exist)? $pA['question_num']:0 ?></td>
-                      <td><?= ($exist)?$quiz['play_attempt']:0 ?></td>
-                      <td><?= ($exist)?$quiz['max_score']:0 ?></td>
-                      <td><?= ($exist)?$quiz['avg_score']:0 ?></td>
+                      <td><?= $pA['question_num'] ?></td>
+                      <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0 ?></td>
+                      <td><?= ($quiz['play_attempt'])?$quiz['avg_score']:0 ?></td>
                       <td>
                         <a href="./index.php?page=viewQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
