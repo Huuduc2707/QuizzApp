@@ -15,7 +15,7 @@ if (!isset($_SESSION['username'])) {
       <div class="page-title mb-2">
         <h1 style="display:inline" class="me-4">Quiz manager</h1>
         <div class="mb-4" <?php if ($_SESSION['role'] == 1) echo "style='display:inline'" ?>>
-          <a href="./index.php?page=viewQuiz"><button style="display:inline" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['role'] != 1) echo 'hidden' ?>>
+          <a href="./index.php?page=owner_create_quiz"><button style="display:inline" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['role'] != 1) echo 'hidden' ?>>
             Add quiz
           </button></a>
         </div>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['username'])) {
                       <td><?= date_format(date_create($quiz['dateCreate']), "d/m/Y")?></td>
                       <td><?= $quiz['username'] ?></td>
                       <td>
-                        <a href="./index.php?page=viewQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
+                        <a href="./index.php?page=owner_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
                         <a href="index.php?page=editQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">

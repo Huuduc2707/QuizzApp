@@ -59,10 +59,10 @@ if (!isset($_SESSION['username'])) {
                       <td><?= ($pA['play_attempt'])?$pA['max_score']:0?></td>
                       <td><?= ($pA['play_attempt'])?$pA['avg_score']:0?></td>
                       <td>
-                        <a href="./index.php?page=viewQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
+                        <a href="./index.php?page=player_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="./index.php?page=playQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
+                        <a href="./index.php?page=play_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
                           Play
                         </a>
                       </td>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/pages/play_quiz.css">
-    <title>Kahoot Play FE</title>
+    <link rel="stylesheet" href="../DB_Assignment/assets/css/pages/play_quiz.css">
+    <title>Play quiz</title>
 </head>
 <body>
     
@@ -40,6 +40,6 @@
         </div>
     
     </div>
-    <script src="../assets/js/pages/play_quiz.js" type="module"></script>
+    <script src="../DB_Assignment/assets/js/pages/play_quiz.js" type="module"></script>
 </body>
 </html>
