@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
   require_once "./database.php";
   $playerID = $_GET['id'];
   $sql = "SELECT account.id, username, password, role, email, gender, dob, nationality, COUNT(*) AS play_attempt, AVG(score) AS avg_score, COUNT(DISTINCT quiz.id) AS quiz_created
-          FROM account JOIN player ON account.id = player.id LEFT JOIN quiz ON quiz.creatorId = 1 LEFT JOIN play_attempt ON play_attempt.playerId = player.id AND play_attempt.quizId = quiz.id 
+          FROM account LEFT JOIN player ON account.id = player.id LEFT JOIN quiz ON quiz.creatorId = account.id LEFT JOIN play_attempt ON play_attempt.playerId = player.id AND play_attempt.quizId = quiz.id 
           WHERE account.id = \"$playerID\"";
   $em = $conn->query($sql)->fetch_all(MYSQLI_ASSOC)[0];
   $sql = "SELECT name, COUNT(*) AS play_attempt 
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Password</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= $em['password'] ?>" readonly />
+                      <input type="password" id="first-name-column" class="form-control" value="<?= $em['password'] ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-lock"></i>
                       </div>
@@ -89,7 +89,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12" <?=($em['role']==1)? 'hidden':''?>>
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Gender</label>
                     <div class="position-relative">
@@ -102,11 +102,11 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12"<?=($em['role']==1)? 'hidden':''?>>
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Date of birth</label>
                     <div class="position-relative">
-                      <input type="text" id="first-name-column" class="form-control" value="<?= date_format(date_create($em['dob']), "d/m/Y") ?>" readonly />
+                      <input type="text" id="first-name-column" class="form-control" value="<?=date_format(date_create($em['dob']), "d/m/Y")?>" readonly/>
                       <div class="form-control-icon">
                         <i class="fa-solid fa-cake-candles"></i>
                       </div>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12" <?=($em['role']==1)? 'hidden':''?>>
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Email address</label>
                     <div class="position-relative">
@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12" <?=($em['role']==1)? 'hidden':''?>>
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Nationality</label>
                     <div class="position-relative">
@@ -142,7 +142,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Total number of attempts</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= $em['play_attempt'] ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= ($em['avg_score'])?$em['play_attempt']:'0' ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-dollar-sign"></i>
                       </div>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Average score for all quizzes</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= ($em['play_attempt'])? $em['avg_score']:0 ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= ($em['avg_score'])? $em['avg_score']:0 ?>" readonly />
                       <div class="form-control-icon">
                         <i class="fa-solid fa-calendar-days"></i>
                       </div>
