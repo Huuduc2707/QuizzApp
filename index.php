@@ -15,8 +15,5 @@ else{
             require "./pages/${pageName}.php";
         }
     }
-    else{
-        header("location: ./index.php?page=taskmanage");
-    }
 }
 ?>

@@ -203,7 +203,7 @@ if (!isset($_SESSION['username'])) {
                   <h1 class="modal-title fs-5">Update profile</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="./index.php?page=player-update-processing&id=<?= $em['id'] ?>" method="POST" class="form form-horizontal">
+                <form action="./index.php?page=player-update-processing&id=<?= $playerID ?>" method="POST" class="form form-horizontal">
                   <div class="modal-body">
                     <div class="row">
                       
@@ -227,7 +227,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8">
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="password" class="form-control" value="<?= $em['password'] ?>" id="first-name-icon" required autocomplete="off" />
+                            <input type="password" name="password" class="form-control" value="<?= $em['password'] ?>" id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
                               <i class="bi bi-telephone"></i>
                             </div>
@@ -241,7 +241,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8" <?= ($em['role']==1)? "hidden":""?>>
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="email" name="email" class="form-control" value="<?= $em['email'] ?>" id="first-name-icon" required autocomplete="off" />
+                            <input type="email" name="email" class="form-control" value="<?= $em['email'] ?>" id="first-name-icon" required autocomplete="off" <?= ($em['role']==1)? "disabled":""?>/>
                             <div class="form-control-icon">
                               <i class="bi bi-telephone"></i>
                             </div>
@@ -255,7 +255,7 @@ if (!isset($_SESSION['username'])) {
                       <div class="col-md-8" <?= ($em['role']==1)? "hidden":""?>>
                         <div class="form-group has-icon-left">
                           <div class="position-relative">
-                            <input type="text" name="nationality" class="form-control" value="<?= $em['nationality'] ?>" id="first-name-icon" required autocomplete="off" />
+                            <input type="text" name="nationality" class="form-control" value="<?= $em['nationality'] ?>" id="first-name-icon" required autocomplete="off"  <?= ($em['role']==1)? "disabled":""?>/>
                             <div class="form-control-icon">
                               <i class="bi bi-telephone"></i>
                             </div>
@@ -268,7 +268,7 @@ if (!isset($_SESSION['username'])) {
                       </div>
                       <div class="col-md-8" <?= ($em['role']==1)? "hidden":""?>>
                         <div class="form-group">
-                          <select name="gender" value="<?= $em['gender'] ?>" style="width:100%;" id="first-name-icon">
+                          <select name="gender" value="<?= $em['gender'] ?>" style="width:100%;" id="first-name-icon"  <?= ($em['role']==1)? "disabled":""?>>
                               <option value="1" <?= ($em['gender']== 1)? 'selected':''?> >Female</option>
                               <option value="0" <?= ($em['gender']== 0)? 'selected':''?> >Male</option>
                           </select>
