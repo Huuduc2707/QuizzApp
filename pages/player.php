@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
 } else {
   // Page
   require_once "./database.php";
-  require "../DB_Assignment/assets/components/head.php";
+  require "../quizApp/assets/components/head.php";
   $id = $_SESSION['userID'];
   $sql = "SELECT DISTINCT category FROM quiz_category";
   $categoryArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
@@ -143,6 +143,6 @@ if (!isset($_SESSION['username'])) {
   </div>
 
 <?php
-  require "../DB_Assignment/assets/components/foot.php";
+  require "../quizApp/assets/components/foot.php";
 }
 ?>

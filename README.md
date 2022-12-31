@@ -1,4 +1,4 @@
-# DB_Assignment
+# quizApp
 
 Assignment 2 of group 1 CC04 - Supermarket system manager web app.
 

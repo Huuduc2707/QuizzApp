@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
     $exist = 1;
     $highestAttempt = $res->fetch_all(MYSQLI_ASSOC)[0];
   }
-  require "../DB_Assignment/assets/components/head.php";
+  require "../quizApp/assets/components/head.php";
 ?>
   
   <div id="main-content">
@@ -296,6 +296,6 @@ if (!isset($_SESSION['username'])) {
   </div>
 
 <?php
-  require "../DB_Assignment/assets/components/foot.php";
+  require "../quizApp/assets/components/foot.php";
 }
 ?>

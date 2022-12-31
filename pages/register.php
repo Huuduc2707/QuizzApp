@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/DB_Assignment/assets/css/pages/aut.css">
+  <link rel="stylesheet" href="/quizApp/assets/css/pages/aut.css">
   <title>Register</title>
 </head>
 
@@ -59,10 +59,10 @@
       
       <button class="form-submit" type="submit">Register</button>
       <div class="link-login">
-      <span>Already have an account? </span> <span><a href="/DB_Assignment/login.php">Login</a></span>
+      <span>Already have an account? </span> <span><a href="/quizApp/login.php">Login</a></span>
     </div>
     </form>
-    <div class="register-bg"><img src="/DB_Assignment/assets/images/bg/login_theme.jpg" alt="bg"></div>
+    <div class="register-bg"><img src="/quizApp/assets/images/bg/login_theme.jpg" alt="bg"></div>
 
   </div>
 

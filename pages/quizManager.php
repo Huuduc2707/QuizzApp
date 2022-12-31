@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
 } else {
   // Page
   require_once "./database.php";
-  require "../DB_Assignment/assets/components/head.php";
+  require "../quizApp/assets/components/head.php";
   $sql = "SELECT * FROM quiz JOIN account ON creatorId = account.id";
   $quizArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -65,6 +65,6 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 <?php
-  require "../DB_Assignment/assets/components/foot.php";
+  require "../quizApp/assets/components/foot.php";
 }
 ?>

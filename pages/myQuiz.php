@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
 } else {
   // Page
   require_once "./database.php";
-  require "../DB_Assignment/assets/components/head.php";
+  require "../quizApp/assets/components/head.php";
   $id = $_SESSION['userID'];
   $sql = "SELECT MAX(score) AS max_score, AVG(score) AS avg_score, COUNT(playDateTime) AS play_attempt, name, lastModified, dateCreate, quiz.id, score
           FROM quiz JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON quiz.id = play_attempt.quizId
@@ -83,6 +83,6 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 <?php
-  require "../DB_Assignment/assets/components/foot.php";
+  require "../quizApp/assets/components/foot.php";
 }
 ?>

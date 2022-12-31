@@ -59,5 +59,5 @@ session_start();
 
 </html>
 <?php
-require "../DB_Assignment/assets/components/foot.php";
+require "../quizApp/assets/components/foot.php";
 ?>

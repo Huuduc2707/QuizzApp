@@ -67,7 +67,7 @@ button:hover{
 .question-body-box .question-body-img{
     grid-column-start: span 4;
     
-    background-image: url("/DB_Assignment/assets/images/QIMG.png");
+    background-image: url("/quizApp/assets/images/QIMG.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
