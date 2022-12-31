@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
     <?php
-      if ($_GET['page'] == 'goods') echo "Goods";
-      if ($_GET['page'] == 'employee') echo "Employee";
-      if ($_GET['page'] == 'profile') echo "Profile";
-      if ($_GET['page'] == 'supplier') echo "Supplier";
-      if ($_GET['page'] == 'supermarket') echo "Supermarket";
-      if ($_GET['page'] == 'import') echo "Import";
-      if ($_GET['page'] == 'export') echo "Export";
+      if ($_GET['page'] == 'admin') echo "Admin page";
+      if ($_GET['page'] == 'player') echo "Player page";
+      if ($_GET['page'] == 'quiz') echo "quiz page";
+      if ($_GET['page'] == 'createQuiz') echo "Create quiz page";
+      if ($_GET['page'] == 'play') echo "Play quiz page";
+      if ($_GET['page'] == 'result') echo "Result page";
+      if ($_GET['page'] == 'manageQuiz') echo "Manage quiz page";
     ?>
 
   </title>
@@ -76,63 +76,34 @@
           <ul class="menu">
             <li class="sidebar-title">Menu</li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'employee' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
-              <a href="./index.php?page=employee" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'player' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['role'] == 1) echo "hidden" ?>>
+              <a href="./index.php?page=player" class="sidebar-link">
                 <i class="bi bi-person-fill"></i>
-                <span>Employee</span>
+                <span>Player</span>
               </a>
             </li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'supplier') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
-              <a href="./index.php?page=supplier" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'admin' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['role'] == 0) echo "hidden" ?>>
+              <a href="./index.php?page=admin" class="sidebar-link">
                 <i class="bi bi-shop-window"></i>
-                <span>Supplier</span>
+                <span>Player manager</span>
               </a>
             </li>
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'goods') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
-              <a href="./index.php?page=goods" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'myQuiz') echo "active" ?>" <?php if ($_SESSION['role'] == 1) echo "hidden" ?>>
+              <a href="./index.php?page=myQuiz" class="sidebar-link">
                 <i class="fa-regular fa-star"></i>
-                <span>Goods</span>
+                <span>My quizzes</span>
               </a>
             </li>
 
 
-            <li class="sidebar-item <?php if ($_GET['page'] == 'supermarket') echo "active" ?>" <?php if ($_SESSION['lv'] == 10) echo "hidden" ?>>
-              <a href="./index.php?page=supermarket" class="sidebar-link">
+            <li class="sidebar-item <?php if ($_GET['page'] == 'quizManager') echo "active" ?>" <?php if ($_SESSION['role'] == 0) echo "hidden" ?>>
+              <a href="./index.php?page=quizManager" class="sidebar-link">
                 <i class="bi bi-shop"></i>
-                <span>Supermarket</span>
+                <span>Quiz manager</span>
               </a>
             </li>
-
-            <li class="sidebar-item <?php if ($_GET['page'] == 'import') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
-              <a href="./index.php?page=import" class="sidebar-link">
-                <i class="bi bi-file-earmark-check"></i>
-                <span>Import bill</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item <?php if ($_GET['page'] == 'export') echo "active" ?>" <?php if ($_SESSION['lv'] == 100) echo "hidden" ?>>
-              <a href="./index.php?page=export" class="sidebar-link">
-                <i class="bi bi-file-earmark-excel"></i>
-                <span>Export bill</span>
-              </a>
-            </li>
-
-
-            <!-- <li class="sidebar-item <?php if ($_GET['page'] == 'requestmanage') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer') echo "hidden" ?>>
-              <a href="./index.php?page=requestmanage" class="sidebar-link">
-                <i class="fa-solid fa-scroll"></i>
-                <span>Requests Management</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item <?php if ($_GET['page'] == 'announce') echo "active" ?>" <?php if ($_SESSION['role'] == 'admin') echo "hidden" ?>>
-              <a href="./index.php?page=announce" class="sidebar-link">
-                <i class="bi bi-megaphone-fill"></i>
-                <span>Announcement</span>
-              </a>
-            </li> -->
 
           </ul>
         </div>
@@ -173,8 +144,8 @@
                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="user-menu d-flex">
                     <div class="user-name text-end me-3">
-                      <h6 class="mb-0 text-gray-600"><?= $_SESSION['name'] ?></h6>
-                      <p class="mb-0 text-sm text-gray-600"><?php if($_SESSION['lv'] == 100) echo "Manager"; else echo "Cashier"; ?></p>
+                      <h6 class="mb-0 text-gray-600"><?= $_SESSION['username'] ?></h6>
+                      <p class="mb-0 text-sm text-gray-600"><?php if($_SESSION['role'] == 1) echo "Admin"; else echo "Player"; ?></p>
                     </div>
                     <div class="user-img d-flex align-items-center">
                       <div class="avatar avatar-md">
@@ -185,10 +156,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem">
                   <li>
-                    <h6 class="dropdown-header">Hello, <?= $_SESSION['name'] ?>!</h6>
+                    <h6 class="dropdown-header">Hello, <?= $_SESSION['username'] ?>!</h6>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="./index.php?page=profile&employeeID=<?= $_SESSION['employeeID'] ?>"><i class="icon-mid bi bi-person me-2"></i> My
+                    <a class="dropdown-item" href="./index.php?page=profile&id=<?= $_SESSION['userID'] ?>"><i class="icon-mid bi bi-person me-2"></i> My
                       Profile</a>
                   </li>
                   <li>

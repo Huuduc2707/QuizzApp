@@ -117,22 +117,22 @@ CREATE TABLE IF NOT EXISTS play_attempt (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- create trigger to generate of play_attempt
-DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
+-- DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
 
-CREATE TRIGGER `generateIdOfPlayAttempt` 
-BEFORE INSERT ON `play_attempt` 
-FOR EACH ROW 
-BEGIN 
-    IF (SELECT COUNT(*) FROM (SELECT P.* FROM play_attempt P WHERE P.playerId = NEW.playerId AND P.quizId = NEW.quizId) AS T) = 0 
-    THEN SET NEW.id = 1; 
-    ELSE SET NEW.id = (SELECT MAX(P.id) + 1 FROM play_attempt P WHERE P.playerId = NEW.playerId AND P.quizId = NEW.quizId); 
-    END IF; 
-END
+-- CREATE TRIGGER `generateIdOfPlayAttempt` 
+-- BEFORE INSERT ON `play_attempt` 
+-- FOR EACH ROW 
+-- BEGIN 
+--     IF (SELECT COUNT(*) FROM (SELECT P.* FROM play_attempt P WHERE P.playerId = NEW.playerId AND P.quizId = NEW.quizId) AS T) = 0 
+--     THEN SET NEW.id = 1; 
+--     ELSE SET NEW.id = (SELECT MAX(P.id) + 1 FROM play_attempt P WHERE P.playerId = NEW.playerId AND P.quizId = NEW.quizId); 
+--     END IF; 
+-- END
 
 -- procedure to update quiz's lastModified field
-DROP PROCEDURE IF EXISTS updateQuizLastModified;
+-- DROP PROCEDURE IF EXISTS updateQuizLastModified;
 
-CREATE PROCEDURE updateQuizLastModified(IN quizId INT)
-    UPDATE quiz SET lastModified = CURRENT_TIMESTAMP WHERE id = quizId;
+-- CREATE PROCEDURE updateQuizLastModified(IN quizId INT)
+--     UPDATE quiz SET lastModified = CURRENT_TIMESTAMP WHERE id = quizId;
 
 

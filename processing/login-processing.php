@@ -15,25 +15,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // $sql = "SELECT * FROM user
     // where username='$username' and password='$password'";
-    $sql = "SELECT * FROM login_info
-    JOIN employee ON login_info.username = employee.First_name WHERE login_info.username = '$username' AND login_info.password = '$password'";
+    $sql = "SELECT * FROM account WHERE account.username = '$username' AND account.password = '$password'";
     $result = $conn->query($sql);
     $returnUserArray = $result->fetch_all(MYSQLI_ASSOC);
     if (count($returnUserArray) == 1) {
         $loginuser = $returnUserArray[0];
         $_SESSION['username'] = $username;
-        $_SESSION['lv'] = $loginuser["userlevel"];
+        $_SESSION['role'] = $loginuser["role"];
         $cookie_name = "user";
         $cookie_value = $username;
         setcookie($cookie_name, $cookie_value, time() + (3600), "/");
-        $_SESSION['employeeID'] = $loginuser['ID'];
-        $_SESSION['name'] = $loginuser['Last_name']." ".$loginuser['First_name'];
-        $_SESSION['departID'] = $loginuser["Supermarket_Scode"];
+        $_SESSION['userID'] = $loginuser['id'];
         //$_SESSION['avatar'] = $loginuser['avatar'];
-        if ($loginuser['Role'] != "Cashier")
-            header('location: ../index.php?page=employee');
+        if ($loginuser['role'] == 0)
+            header('location: ../index.php?page=player');
         else
-            header('location: ../index.php?page=import');
+            header('location: ../index.php?page=admin');
 
         // mysqli_close($conn);
         // if ($_SESSION['level'] == 'admin'){
