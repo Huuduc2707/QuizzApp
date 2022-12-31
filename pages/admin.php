@@ -169,9 +169,8 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <select name="gender" id="gender" required style="width:100%">
                       <option selected hidden>Please choose employee's gender...</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
+                      <option value="0">Male</option>
+                      <option value="1">Female</option>
                     </select>
                   </div>
                 </div>

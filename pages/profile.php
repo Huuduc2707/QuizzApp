@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
   require_once "./database.php";
   $playerID = $_GET['id'];
   $sql = "SELECT account.id, username, password, role, email, gender, dob, nationality, COUNT(*) AS play_attempt, AVG(score) AS avg_score, COUNT(DISTINCT quiz.id) AS quiz_created
-          FROM account JOIN player ON account.id = player.id JOIN quiz ON quiz.creatorId = 1 JOIN play_attempt ON play_attempt.playerId = player.id AND play_attempt.quizId = quiz.id 
+          FROM account JOIN player ON account.id = player.id LEFT JOIN quiz ON quiz.creatorId = 1 LEFT JOIN play_attempt ON play_attempt.playerId = player.id AND play_attempt.quizId = quiz.id 
           WHERE account.id = \"$playerID\"";
   $em = $conn->query($sql)->fetch_all(MYSQLI_ASSOC)[0];
   $sql = "SELECT name, COUNT(*) AS play_attempt 
@@ -89,7 +89,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12" <?= ($em['role']==1)? "hidden":""?>>
+                <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Gender</label>
                     <div class="position-relative">
@@ -102,7 +102,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12" <?= ($em['role']==1)? "hidden":""?>>
+                <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Date of birth</label>
                     <div class="position-relative">
@@ -114,7 +114,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12" <?= ($em['role']==1)? "hidden":""?>>
+                <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Email address</label>
                     <div class="position-relative">
@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                   </div>
                 </div>
 
-                <div class="col-md-6 col-12" <?= ($em['role']==1)? "hidden":""?>>
+                <div class="col-md-6 col-12">
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Nationality</label>
                     <div class="position-relative">
