@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../quizApp/assets/css/pages/play_quiz.css">
+    <script src="../quizApp/assets/js/pages/play_quiz.js" type="module"></script>
     <title>Play quiz</title>
 </head>
 <body>
-    
+    <?php
+        
+    ?>
     <div class="container-play-quiz">
         <div class="question-box">
             <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
@@ -20,7 +23,7 @@
         </div>
     
         <div class="options-box">
-            <button type="submit" id="optionA">
+            <button type="submit" id="optionA" >
                 <span class="opt-icon">A.</span><span class="opt-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </button>
             <button type="submit" id="optionB">
@@ -40,6 +43,5 @@
         </div>
     
     </div>
-    <script src="../quizApp/assets/js/pages/play_quiz.js" type="module"></script>
 </body>
 </html>

@@ -127,7 +127,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="./index.php?page=viewQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="./index.php?page=playQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
+                        <a href="./index.php?page=play-init-processing&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
                           Play
                         </a>
                       </td>
