@@ -29,7 +29,7 @@
         </div>
 
         <div class="question-create-state">
-            <span onkeyup="updateTotalScore()">Total Score: 0</span>
+            <span id="totalScore">Total Score: 0</span>
         </div>
         <div class="question-form-create-box" id="1">
             <div class="question-create-state">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-point">Question's point</label>
-                        <input type="number" min="0" name="question-point1" placeholder="Choose Question's point..." autocomplete="off" required>
+                        <input type="number" min="0" name="question-point1" class="question-point" onkeyup="updateTotalScore()" placeholder="Choose Question's point..." autocomplete="off" required>
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-time">Question's time (seconds)</label>

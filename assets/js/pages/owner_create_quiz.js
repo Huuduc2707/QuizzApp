@@ -18,7 +18,7 @@ function addQuestion(){
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-point">Question's point</label>
-                        <input type="number" min="0" name="question-point${order}" placeholder="Choose Question's point...">
+                        <input type="number" min="0" name="question-point${order}" class="question-point" onkeyup="updateTotalScore()" placeholder="Choose Question's point...">
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-time">Question's time (seconds)</label>
@@ -86,7 +86,7 @@ function deleteQuestion(order){
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-point">Question's point</label>
-                        <input type="number" min="0" name="question-point${num-1}" placeholder="Choose Question's point...">
+                        <input type="number" min="0" name="question-point${num-1}" class="question-point" onkeyup="updateTotalScore()" placeholder="Choose Question's point...">
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-time">Question's time (seconds)</label>
@@ -106,7 +106,7 @@ function deleteQuestion(order){
                     </div>
                     <div class="option-form">
                         <span>C.</span>
-                        <input type="text" name="optionC${order}">
+                        <input type="text" name="optionC${num-1}">
                     </div>
                     <div class="option-form">
                         <span>D.</span>
@@ -135,4 +135,14 @@ function deleteQuestion(order){
 
 function goBack(){
     
+}
+
+function updateTotalScore(){
+    let score = document.getElementById('totalScore');
+    let scoreInput = document.getElementsByClassName('question-point');
+    let sum = 0;
+    for(let i=0;i<scoreInput.length;i++){
+        if(scoreInput[i].value) sum+=parseInt(scoreInput[i].value);
+    }   
+    score.innerText = `Total Score: ${sum}`;
 }
