@@ -33,25 +33,25 @@
         </div>
         <div class="question-form-create-box" id="1">
             <div class="question-create-state">
-                <span>Question 1</span>
+                <span id="question1">Question 1</span>
             </div>
             <div class="question-form">
                 <div class="question-form-input-area">
                     <div class="input-form-quiz-gen">
                         <label for="question-cont">Question's content</label>
-                        <input type="text" name="question-cont1" placeholder="Enter Question..." autocomplete="off" required>
+                        <input type="text" name="question-cont1" id="question-cont1" placeholder="Enter Question..." autocomplete="off" required>
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-img">Question's Image</label>
-                        <input type="text" name="question-img1" placeholder="Enter URL...">
+                        <input type="text" name="question-img1" id="question-img1" placeholder="Enter URL...">
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-point">Question's point</label>
-                        <input type="number" min="0" name="question-point1" class="question-point" onkeyup="updateTotalScore()" placeholder="Choose Question's point..." autocomplete="off" required>
+                        <input type="number" min="0" name="question-point1" id="question-point1" class="question-point" onkeyup="updateTotalScore()" placeholder="Choose Question's point..." autocomplete="off" required>
                     </div>
                     <div class="input-form-quiz-gen">
                         <label for="question-time">Question's time (seconds)</label>
-                        <input type="number" min="0" name="question-time1" placeholder="Choose Question's time..." autocomplete="off" required>
+                        <input type="number" min="0" name="question-time1" id="question-time1" placeholder="Choose Question's time..." autocomplete="off" required>
                     </div>
                 </div>
 
@@ -59,24 +59,24 @@
                     <label for="">Create Options</label>
                     <div class="option-form">
                         <span>A.</span>
-                        <input type="text" name="optionA1" autocomplete="off" required>
+                        <input type="text" name="optionA1" id="optionA1" autocomplete="off" required>
                     </div>
                     <div class="option-form">
                         <span>B.</span>
-                        <input type="text" name="optionB1" autocomplete="off" required>
+                        <input type="text" name="optionB1" id="optionB1" autocomplete="off" required>
                     </div>
                     <div class="option-form">
                         <span>C.</span>
-                        <input type="text" name="optionC1" autocomplete="off" required>
+                        <input type="text" name="optionC1" id="optionC1" autocomplete="off" required>
                     </div>
                     <div class="option-form">
                         <span>D.</span>
-                        <input type="text" name="optionD1" autocomplete="off" required>
+                        <input type="text" name="optionD1" id="optionD1" autocomplete="off" required>
                     </div>
                     
                     <div class="correct-answer">
                         <label for="CA">Correct Answer:</label>
-                        <select name="CA1" required>
+                        <select name="CA1" id="CA1" required>
                             <option value="A" selected>A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="delete-question-btn">
-                    <button name="delete-question" onclick="deleteQuestion(1)">Delete</button>
+                    <button name="delete-question" onclick="deleteQuestion(1)" type="button" id="delete1">Delete</button>
                 </div>
             </div>
         </div>
@@ -100,4 +100,5 @@
     </form>
 </body>
 <script src="../quizApp/assets/js/pages/owner_create_quiz.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </html>
