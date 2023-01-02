@@ -14,6 +14,7 @@
       if ($_GET['page'] == 'result') echo "Result page";
       if ($_GET['page'] == 'manageQuiz') echo "Manage quiz page";
       if ($_GET['page'] == 'profile') echo "Profile page";
+      if ($_GET['page'] == 'myQuiz') echo "My quizzes page";
     ?>
 
   </title>

@@ -1,3 +1,6 @@
+<?php
+    require_once "../quizApp/database.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,112 +14,93 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 </head>
 
+<?php
+    $quizID = $_GET['quizID'];
+    $sql = "SELECT * FROM quiz JOIN account ON quiz.creatorId = account.id WHERE quiz.id = \"$quizID\"";
+    $overview = $conn->query($sql)->fetch_assoc();
+    $sql = "SELECT * FROM quiz JOIN quiz_category ON quiz_category.quizId = quiz.id WHERE quiz.id = \"$quizID\"";
+    $category = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+    $sql = "SELECT COUNT(play_attempt.id) AS play_attempt, MAX(score) AS max_score  
+            FROM quiz LEFT JOIN play_attempt ON quizId = quiz.id JOIN account ON account.id = quiz.creatorId 
+            WHERE quiz.id = \"$quizID\"
+            GROUP BY quizId";
+    $analytic = $conn->query($sql)->fetch_assoc();
+    $sql = "SELECT question.content, question.point, question.timeLimit, question.media, option.content AS option, option.isAnswer
+            FROM quiz JOIN question ON quiz.id = question.quizId JOIN option ON question.id = option.questionId
+            WHERE quiz.id = \"$quizID\"";
+    $question = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+    $sql = "SELECT SUM(question.point) AS total_score, COUNT(question.id) AS question_num
+            FROM quiz JOIN question ON quiz.id = question.quizId
+            WHERE quiz.id = \"$quizID\"
+            GROUP BY quiz.id";
+    $question_info = $conn->query($sql)->fetch_assoc();
+    $sql = "SELECT AVG(rating) AS rating FROM rating WHERE rating.quizId = \"$quizID\"";
+    $rating = $conn->query($sql)->fetch_assoc();
+?>
+
 <body>
 
     <div class="quiz-info-block">
         <div class="quiz-info-block-1">
-        <div class="quiz-name">Computer Networks And Algorithms</div>
+        <div class="quiz-name"><?=$overview['name']?></div>
         <div class="current-rating">
             <div class="star-cont">
                 <div class="stars-outer">
                     <div class="stars-inner"></div>
                 </div>
-                <span class="number-rating">3.5</span>
+                <span class="number-rating"><?=number_format($rating['rating'],1)?></span>
             </div>
         </div>
-        <div class="quiz-info-genre">Science, Socialism, HIstory</div>
-        <div class="player-num">33 players</div>
-        <div class="quiz-creator">Creator: Pham Huu Duc</div>
+        <div class="quiz-info-genre">
+            <?php
+                echo $category[0]['category'];
+                for($i=1;$i<count($category);$i++) echo ", ".$category[$i]['category'];
+            ?>
+        </div>
+        <div class="player-num"><?=($analytic['play_attempt']) ? $analytic['play_attempt'] : 0?> attempts</div>
+        <div class="quiz-creator">Creator: <?=$overview['username']?></div>
         <div class="quiz-info-des">
             <p>About the quiz</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Nesciunt eius consequuntur quia, quaerat sit sequi dicta harum ratione laudantium pariatur facere nulla cupiditate id possimus sapiente culpa repellendus explicabo earum?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Nesciunt eius consequuntur quia, quaerat sit sequi dicta harum ratione laudantium pariatur facere nulla cupiditate id possimus sapiente culpa repellendus explicabo earum?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Nesciunt eius consequuntur quia, quaerat sit sequi dicta harum ratione laudantium pariatur facere nulla cupiditate id possimus sapiente culpa repellendus explicabo earum?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Nesciunt eius consequuntur quia, quaerat sit sequi dicta harum ratione laudantium pariatur facere nulla cupiditate id possimus sapiente culpa repellendus explicabo earum?
-            </p>
+            <p><?=$overview['description']?></p>
         </div>
-        <div class="update">Last update: 12/31/2022</div>
+        <div class="update">Last update: <?=date_format(date_create($overview['lastModified']), 'd/m/Y H:i:s')?></div>
         </div>
         <div class="max-score-area">
-            <div class="max-score">112 points</div>
+            <div class="max-score"><?=($analytic['play_attempt']) ? $analytic['max_score'] : 0?> points</div>
             <div class="stage-img"></div>
         </div>
     </div>
     
     <div class="container-result">
-        <div class="question-total"><span class="text">Question:</span><span class="num-question">4</span></div>
-        <div class="score-text"><span class="text">Total Score:</span><span class="score">100</span></div>
+        <div class="question-total"><span class="text">Question:</span><span class="num-question"><?=$question_info['question_num']?></span></div>
+        <div class="score-text"><span class="text">Total Score:</span><span class="score"><?=$question_info['total_score']?></span></div>
         <div class="result-report-owner">
-            <div class="result-question">
-                <div class="header">
-                    <div class="question">Lorem ipsum, dolor sit amet consectetur adipisicing elit? (10 points)</div>
-                    <div class="image" title="Question Image"></div>
-                </div>
-                <div class="option optionA correct-ans">
-                    <span>A.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionB">
-                    <span>B.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionC">
-                    <span>C.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionD">
-                    <span>D.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-            </div>
-            <div class="result-question">
-                <div class="header">
-                    <div class="question">Lorem ipsum, dolor sit amet consectetur adipisicing elit? (10 points)</div>
-                    <div class="image"></div>
-                </div>
-                <div class="option optionA">
-                    <span>A.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionB correct-ans">
-                    <span>B.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionC">
-                    <span>C.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionD">
-                    <span>D.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-            </div>
-            <div class="result-question">
-                <div class="header">
-                    <div class="question">Lorem ipsum, dolor sit amet consectetur adipisicing elit? Lorem ipsum, dolor sit amet consectetur adipisicing elit? Lorem ipsum, dolor sit amet consectetur adipisicing elit? (10 points)</div>
-                    <div class="image"></div>
-                </div>
-                <div class="option optionA">
-                    <span>A.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionB">
-                    <span>B.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionC correct-ans">
-                    <span>C.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-                <div class="option optionD wrong-ans">
-                    <span>D.</span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                </div>
-            </div>
+            <?php
+                for($i=0;$i<count($question);$i+=4){
+            ?>
+                    <div class="result-question">
+                        <div class="header">
+                            <div class="question"><?=$question[$i]['content']?> (<?=$question[$i]['point']?> points)</div>
+                            <div class="image" title="Question Image"></div>
+                        </div>
+                        <div class="option optionA <?=($question[$i]['isAnswer'])?"correct-ans":""?>">
+                            <span>A.</span>
+                            <span><?=$question[$i]['option']?></span>
+                        </div>
+                        <div class="option optionB  <?=($question[$i+1]['isAnswer'])?"correct-ans":""?>">
+                            <span>B.</span>
+                            <span><?=$question[$i+1]['option']?></span>
+                        </div>
+                        <div class="option optionC  <?=($question[$i+2]['isAnswer'])?"correct-ans":""?>">
+                            <span>C.</span>
+                            <span><?=$question[$i+2]['option']?></span>
+                        </div>
+                        <div class="option optionD <?=($question[$i+3]['isAnswer'])?"correct-ans":""?>">
+                            <span>D.</span>
+                            <span><?=$question[$i+3]['option']?></span>
+                        </div>
+                    </div>
+            <?php } ?>
         </div>
     </div>
     <script src="../quizApp/assets/js/pages/owner_view_quiz.js" type="module"></script>

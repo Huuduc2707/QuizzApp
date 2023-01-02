@@ -134,7 +134,7 @@ function deleteQuestion(order){
 }
 
 function goBack(){
-    
+    window.location.replace('http://localhost/quizApp/index.php?page=myQuiz');
 }
 
 function updateTotalScore(){
