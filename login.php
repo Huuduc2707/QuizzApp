@@ -43,10 +43,11 @@ session_start();
               unset($_SESSION['loginerror']);
             }
             ?>
-            <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+            <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-2">
               Log in
             </button>
           </form>
+          <span>Don't have account? </span> <span><a href="./pages/register.php">Register now</a></span>
         </div>
       </div>
       <div class="col-lg-7 d-none d-lg-block">
@@ -58,5 +59,5 @@ session_start();
 
 </html>
 <?php
-require "./components/foot.php";
+require "../quizApp/assets/components/foot.php";
 ?>

@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS play_attempt (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- create trigger to generate of play_attempt
-DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
+-- DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
 
 -- CREATE TRIGGER `generateIdOfPlayAttempt` BEFORE INSERT ON `play_attempt` 
 -- FOR EACH ROW 
@@ -129,7 +129,7 @@ DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
 -- END
 
 -- procedure to update quiz's lastModified field
-DROP PROCEDURE IF EXISTS updateQuizLastModified;
+-- DROP PROCEDURE IF EXISTS updateQuizLastModified;
 
 CREATE PROCEDURE updateQuizLastModified(IN quizId INT)
     UPDATE quiz SET lastModified = CURRENT_TIMESTAMP WHERE id = quizId;
