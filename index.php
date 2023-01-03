@@ -9,10 +9,10 @@ else{
     if (isset($_GET['page'])){
         $pageName = strtolower($_GET['page']);
         if (strpos($pageName, 'processing')){
-            require "./processing/${pageName}.php";
+            require "./processing/$pageName.php";
         }
         else{
-            require "./pages/${pageName}.php";
+            require "./pages/$pageName.php";
         }
     }
 }

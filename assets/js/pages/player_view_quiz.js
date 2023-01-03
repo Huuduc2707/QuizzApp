@@ -1,19 +1,20 @@
-
-
-
-
-
-let starRate = 0;
-// Star rating
-const getRating = document.querySelectorAll("input").forEach(el => {
-    el.nextElementSibling.addEventListener("click", ()=>{
-        console.log(el.value);
-        // gán chỉ số tại đây
-        starRate = el.value;
-    })
-});
-
-getRating;
+function submitRating(rating, userID, quizID){
+  $.ajax({
+    type: "GET",
+    url: `../quizApp/processing/rating-processing.php`,
+    data: {rating:rating, userID:userID, quizID:quizID},
+    success: (data)=>{
+      console.log(data);
+      $('.rate-text').text('You have rated this quiz!');
+      $('#five').removeAttr('onclick').prop('disabled',true);
+      $('#four').removeAttr('onclick').prop('disabled',true);
+      $('#three').removeAttr('onclick').prop('disabled',true);
+      $('#two').removeAttr('onclick').prop('disabled',true);
+      $('#one').removeAttr('onclick').prop('disabled',true);
+      alert('Thanks you for your rating ❤');
+    }
+  });
+}
 
 // average rating for quiz view
 

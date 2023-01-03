@@ -48,7 +48,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="./index.php?page=owner_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="index.php?page=editQuiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
+                        <a href="index.php?page=edit_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
                           Edit
                         </a>
                         <a href="./index.php?page=quiz-delete-processing&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-danger">
