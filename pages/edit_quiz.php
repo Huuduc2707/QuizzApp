@@ -40,7 +40,7 @@
 
 
 <body>
-    <form class="create-quiz-box" action="../quizApp/processing/insert-quiz-processing.php" method="post">
+    <form class="create-quiz-box" action="../quizApp/processing/update-quiz-processing.php?quizID=<?=$quizID?>" method="post" onsubmit="return confirm('Do you want to save all the changes?');">
         <div class="create-heading">Create Quiz</div>
         <div class="input-form-quiz-gen">
             <label for="quiz-name-create">Quiz's name</label>
@@ -71,6 +71,7 @@
                     </div>
                     <div class="question-form">
                         <div class="question-form-input-area">
+                            <input type="hidden" name="questionID<?=0.25*$i+1?>" value="<?=$question[$i]['id']?>" required>
                             <div class="input-form-quiz-gen">
                                 <label for="question-cont">Question's content</label>
                                 <input type="text" name="question-cont<?=0.25*$i+1?>" value="<?=$question[$i]['content']?>" id="question-cont<?=0.25*$i+1?>" placeholder="Enter Question..." autocomplete="off" required>
@@ -110,7 +111,7 @@
                             
                             <div class="correct-answer">
                                 <label for="CA">Correct Answer:</label>
-                                <select name="CA1" id="CA<?=0.25*$i+1?>" required>
+                                <select name="CA<?=0.25*$i+1?>" id="CA<?=0.25*$i+1?>" required>
                                     <option value="A" <?=($question[$i]['isAnswer'])?"selected":""?>>A</option>
                                     <option value="B" <?=($question[$i+1]['isAnswer'])?"selected":""?>>B</option>
                                     <option value="C" <?=($question[$i+2]['isAnswer'])?"selected":""?>>C</option>
@@ -127,7 +128,7 @@
         <div class="quiz-create-button">
             <button name="add-question-button" onclick="addQuestion()" type="button">Add question</button>
             <button name="cancel-quiz-button" onclick="goBack()" type="button">Cancel</button>
-            <button name="confirm-quiz-button" onclick="updateQuiz()" type="submit">Confirm</button>
+            <button name="confirm-quiz-button" type="submit">Confirm</button>
         </div>
     </form>
 </body>

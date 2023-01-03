@@ -7,6 +7,7 @@ function addQuestion(){
             </div>
             <div class="question-form">
                 <div class="question-form-input-area">
+                    <input type="hidden" name="questionID${order}" value="0" required>
                     <div class="input-form-quiz-gen">
                         <label for="question-cont">Question's content</label>
                         <input type="text" name="question-cont${order}" id="question-cont${order}" placeholder="Enter Question..." required>
