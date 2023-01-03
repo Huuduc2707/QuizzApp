@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form class="create-quiz-box" action="../quizApp/processing/insert-quiz-processing.php" method="post">
+    <form class="create-quiz-box" action="../quizApp/processing/insert-quiz-processing.php" method="post" onsubmit="return confirm('Do you want to save all the changes?')">
         <div class="create-heading">Create Quiz</div>
         <div class="input-form-quiz-gen">
             <label for="quiz-name-create">Quiz's name</label>

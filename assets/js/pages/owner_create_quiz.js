@@ -116,7 +116,7 @@ function updateTotalScore(){
     score.innerText = `Total Score: ${sum}`;
 }
 
-function deleteQuestion(order, id){
+function deleteQuestion(order, questionID, quizID){
     let questionForm = document.getElementsByClassName('question-form-create-box');
     if(questionForm.length === 1) alert("Your quiz must have at least 1 question");
     else{
@@ -152,11 +152,7 @@ function deleteQuestion(order, id){
                     updateTotalScore();
                 }
             }
-            $.ajax({
-                type: 'GET',
-                url: '../quizApp/processing/question-delete-processing.php',
-                data: {questionID: id}
-            })
+            window.location.href = `../quizApp/processing/question-delete-processing.php?questionID=${questionID}&quizID=${quizID}`;
         }
     }
 }
