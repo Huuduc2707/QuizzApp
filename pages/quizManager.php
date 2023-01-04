@@ -14,11 +14,11 @@ if (!isset($_SESSION['username'])) {
     <div class="page-heading">
       <div class="page-title mb-2">
         <h1 style="display:inline" class="me-4">Quiz manager</h1>
-        <div class="mb-4" <?php if ($_SESSION['role'] == 1) echo "style='display:inline'" ?>>
-          <a href="./index.php?page=owner_create_quiz"><button style="display:inline" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['role'] != 1) echo 'hidden' ?>>
+        <!-- <div class="mb-4" <?php if ($_SESSION['role'] == 1) echo "style='display:inline'" ?>>
+          <a href="./index.php?page=owner_create_quiz2"><button style="display:inline" class="btn btn-primary rounded-pill mb-4" <?php if ($_SESSION['role'] != 1) echo 'hidden' ?>>
             Add quiz
           </button></a>
-        </div>
+        </div> -->
       </div>
       <section class="section">
           <div class="card h-100 mb-4">
@@ -48,7 +48,7 @@ if (!isset($_SESSION['username'])) {
                         <a href="./index.php?page=owner_view_quiz&quizID=<?=$quiz['id']?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="index.php?page=edit_quiz&quizID=<?=$quiz['id']?>" class="btn btn-sm rounded-pill btn-outline-primary">
+                        <a href="index.php?page=edit_quiz2&quizID=<?=$quiz['id']?>" class="btn btn-sm rounded-pill btn-outline-primary">
                           Edit
                         </a>
                         <a href="./index.php?page=quiz-delete-processing&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-danger">

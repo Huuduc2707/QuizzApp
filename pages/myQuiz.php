@@ -55,11 +55,13 @@ if (!isset($_SESSION['username'])) {
                       $exist = 1;
                       $pA = $personalAchievement->fetch_all(MYSQLI_ASSOC)[0];
                     }
+                    $sql = "SELECT COUNT(question.id) AS question_num FROM quiz JOIN question ON quiz.id = question.quizId WHERE quiz.id=\"".$quiz['id']."\"";
+                    $question_num = $conn->query($sql)->fetch_assoc();
                   ?>
                     <tr>
                       <td><?= $quiz['name'] ?></td>
                       <td><?= date_format(date_create($quiz['lastModified']), "d/m/Y H:i:s") ?></td>
-                      <td><?= $pA['question_num'] ?></td>
+                      <td><?= $question_num['question_num'] ?></td>
                       <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0 ?></td>
                       <td><?= ($quiz['play_attempt'])?number_format($quiz['avg_score'],2):0 ?></td>
                       <td>
