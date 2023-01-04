@@ -1,4 +1,4 @@
-# quizApp
+# Quiz App
 
 Programming integration project -  Quiz app.
 
