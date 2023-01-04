@@ -1,6 +1,6 @@
 # quizApp
 
-Programming project_Software orientated -  Quiz app.
+Programming integration project -  Quiz app.
 
 Please follow these steps to run our group web app on your computer:
 
@@ -10,24 +10,24 @@ Please follow these steps to run our group web app on your computer:
 
 The code must be stored here to run, other directories are not allowed.
 
-### Step 3: Open XAMPP control panel and turn on Apache and phpMyadmin
+### Step 3: Open XAMPP control panel and turn on Apache and mySQL
 
-### Step 4: Click "Admin" button of phpMyadmin to go to its dashboard
+### Step 4: Click "Admin" button of mySQL to go to its dashboard
 
-### Step 5: Create a database and named it "db"
+### Step 5: Create a database and named it "quizApp"
 
-### Step 6: Import supermarket_database.sql file to create the database
+### Step 6: Import db.sql file to create the database
 
-### Step 7: Open your web browser and type http://localhost/webpro/index.php in the url bar to start the web app
+### Step 7: Open your web browser and type http://localhost/quizApp/index.php in the url bar to start the quiz app
 
 ### Step 8: Log in to start using
 
-Try **username: Quang** and **password: Quang** to log in admin page.
+Try **username: admin** and **password: Admin0123** to log in admin page.
 
-Try **username: Tu** and **password: Tu** to log in cashier page.
+Try **username: hihihi** and **password: hihihi** to log in player page.
 
-You can also create new account to log in by insert new record to **login_info table** in database.
+You can also create new account to log in by insert new record into **account table** in database.
 
-**Note:** user level = 100 means admin, user level = 10 mean cashier.
+**Note:** role = 1 means admin, role = 0 means player.
 
 ## **If you have correctly followed the above steps then the web app should run perfectly fine on your computer.**
