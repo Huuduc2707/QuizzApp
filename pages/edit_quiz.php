@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="delete-question-btn">
-                            <button name="delete-question" onclick="deleteQuestion(<?=0.25*$i+1?>, <?=$question[$i]['id']?>, <?=$quizID?>)" type="button" id="delete<?=0.25*$i+1?>">Delete</button>
+                            <button name="delete-question" onclick="deleteQuestion1(<?=0.25*$i+1?>, <?=$question[$i]['id']?>, <?=$quizID?>)" type="button" id="delete<?=0.25*$i+1?>">Delete</button>
                         </div>
                     </div>
                 </div>

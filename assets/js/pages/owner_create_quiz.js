@@ -116,7 +116,7 @@ function updateTotalScore(){
     score.innerText = `Total Score: ${sum}`;
 }
 
-function deleteQuestion(order, questionID, quizID){
+function deleteQuestion1(order, questionID, quizID){
     let questionForm = document.getElementsByClassName('question-form-create-box');
     if(questionForm.length === 1) alert("Your quiz must have at least 1 question");
     else{
