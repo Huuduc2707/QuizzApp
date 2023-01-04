@@ -1,6 +1,6 @@
 # quizApp
 
-Assignment 2 of group 1 CC04 - Supermarket system manager web app.
+Programming project_Software orientated -  Quiz app.
 
 Please follow these steps to run our group web app on your computer:
 
