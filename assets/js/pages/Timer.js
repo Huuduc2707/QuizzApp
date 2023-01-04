@@ -21,15 +21,21 @@ export default class Timer{
         let tmp = setInterval(()=>{
             this.el.countDownEl.innerHTML = `${time}`;
             time--;
-            if(time < 0){
+            if(time === 0){
+                let id = document.getElementById('quizID').value;
                 clearInterval(tmp);
+                changeQuestion(0,0,id);
             }
         }, 1000);
     }
 
     static getHTML(){
         return `
-        <div class="countDownTimerBound"><p id="countDownTimer">0</p></div>
+        <div class="countDownTimerBound"><p id="countDownTimer"></p></div>
         `;
     }
+}
+
+function changeQuestion(isAnswer, point, quizID){
+    window.location.href = `./index.php?page=play-quiz-processing&isAnswer=${isAnswer}&point=${point}&quizID=${quizID}`;
 }
