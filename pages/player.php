@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
   $categoryArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
   $sql = "SELECT quiz.id, name, lastModified, dateCreate, creatorId, username, COUNT(play_attempt.id) AS play_attempt, AVG(score) AS avg_score  
           FROM quiz LEFT JOIN play_attempt ON quizId = quiz.id JOIN account ON account.id = quiz.creatorId 
-          GROUP BY quizId ORDER BY play_attempt,score DESC LIMIT 10";
+          GROUP BY quiz.id ORDER BY play_attempt,score DESC LIMIT 10";
   $quizTrend = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -41,23 +41,23 @@ if (!isset($_SESSION['username'])) {
                 <tbody>
                   <?php foreach ($quizTrend as $quiz) {
                     $sql = "SELECT MAX(score) AS max_score, COUNT(playDateTime) AS play_attempt, AVG(score) AS avg_score
-                            FROM quiz JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id AND play_attempt.playerId = account.id 
+                            FROM quiz LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id LEFT JOIN account ON play_attempt.playerId = account.id 
                             WHERE account.id = \"$id\" AND quiz.id =\"".$quiz['id']."\"
                             GROUP BY play_attempt.quizId";
                     $personalAchievement = $conn->query($sql);
-                    $exist = 0;
+                    $exists = 0;
                     if(mysqli_num_rows($personalAchievement)){
-                      $exist = 1;
+                      $exists = 1;
                       $pA = $personalAchievement->fetch_all(MYSQLI_ASSOC)[0];
-                    } 
+                    }
                   ?>
                     <tr>
                       <td><?= $quiz['name'] ?></td>
                       <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0?></td>
-                      <td><?= ($quiz['play_attempt'])?$quiz['avg_score']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['play_attempt']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['max_score']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['avg_score']:0?></td>
+                      <td><?= ($quiz['play_attempt'])?number_format($quiz['avg_score'],2):0?></td>
+                      <td><?= ($exists)?$pA['play_attempt']:0?></td>
+                      <td><?= ($exists)?$pA['max_score']:0?></td>
+                      <td><?= ($exists)?number_format($pA['avg_score'],2):0?></td>
                       <td>
                         <a href="./index.php?page=player_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
@@ -78,8 +78,8 @@ if (!isset($_SESSION['username'])) {
         <?php
         foreach ($categoryArray as $category) {
           $type = $category['category'];
-          $sql = "SELECT quiz.id, name, lastModified, dateCreate, username, AVG(score) AS avg_score, COUNT(playdateTime) AS play_attempt 
-                  FROM quiz JOIN quiz_category ON quizId = quiz.id JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id
+          $sql = "SELECT quiz.id, name, lastModified, dateCreate, AVG(score) AS avg_score, COUNT(playdateTime) AS play_attempt 
+                  FROM quiz JOIN quiz_category ON quizId = quiz.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id
                   WHERE quiz_category.category = \"$type\"
                   GROUP BY play_attempt.quizId";
           $quizArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
@@ -106,23 +106,23 @@ if (!isset($_SESSION['username'])) {
                 <tbody>
                   <?php foreach ($quizArray as $quiz) {
                     $sql = "SELECT MAX(score) AS max_score, COUNT(playDateTime) AS play_attempt, AVG(score) AS avg_score
-                            FROM quiz JOIN quiz_category ON quizId = quiz.id JOIN account ON creatorId = account.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id AND play_attempt.playerId = account.id
+                            FROM quiz JOIN quiz_category ON quizId = quiz.id LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id LEFT JOIN account ON play_attempt.playerId = account.id 
                             WHERE quiz_category.category = \"$type\" AND quiz.id = \"".$quiz['id']."\" AND account.id = $id 
                             GROUP BY play_attempt.quizId";
                     $personalAchievement = $conn->query($sql);
-                    $exist = 0;
+                    $exists = 0;
                     if(mysqli_num_rows($personalAchievement)){
-                      $exist = 1;
+                      $exists = 1;
                       $pA = $personalAchievement->fetch_all(MYSQLI_ASSOC)[0];
                     } 
                   ?>
                     <tr>
                       <td><?= $quiz['name'] ?></td>
                       <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0?> </td>
-                      <td><?= ($quiz['play_attempt'])?$quiz['avg_score']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['play_attempt']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['max_score']:0?></td>
-                      <td><?= ($pA['play_attempt'])?$pA['avg_score']:0?></td>
+                      <td><?= ($quiz['play_attempt'])?number_format($quiz['avg_score'],2):0?></td>
+                      <td><?= ($exists)?$pA['play_attempt']:0?></td>
+                      <td><?= ($exists)?$pA['max_score']:0?></td>
+                      <td><?= ($exists)?number_format($pA['avg_score'],2):0?></td>
                       <td>
                         <a href="./index.php?page=player_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View

@@ -8,11 +8,8 @@
     <?php
       if ($_GET['page'] == 'admin') echo "Admin page";
       if ($_GET['page'] == 'player') echo "Player page";
-      if ($_GET['page'] == 'quiz') echo "quiz page";
-      if ($_GET['page'] == 'createQuiz') echo "Create quiz page";
-      if ($_GET['page'] == 'play') echo "Play quiz page";
       if ($_GET['page'] == 'result') echo "Result page";
-      if ($_GET['page'] == 'manageQuiz') echo "Manage quiz page";
+      if ($_GET['page'] == 'quizManager') echo "Quiz manager page";
       if ($_GET['page'] == 'profile') echo "Profile page";
       if ($_GET['page'] == 'myQuiz') echo "My quizzes page";
     ?>

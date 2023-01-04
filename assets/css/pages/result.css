@@ -24,11 +24,10 @@ html {
 
 body{
     /* background-color: var(--background-color); */
-    display: flex;
-    justify-content: center;
+    display: grid;
     background-color: var(--background-color-3);
     padding: 20px 0;
-    align-items: center;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 /*--------------------------------------------------------------------------------------*/
@@ -40,8 +39,10 @@ body{
     align-items: center;
     padding: 20px 40px;
     background-color: var(--background-color-2);
-    width: 60%;
+    width:100%;
     border-radius: 5px;
+    grid-column-start: span 3;
+
 }
 
 
@@ -205,7 +206,25 @@ body{
     text-align: center;
 }
 
+.goback-btn{
+    padding: 0 30px;
+}
 
+.goback-btn button{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-white);
+    background-color: var(--option-a-color);
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.goback-btn button:hover{
+    background-color: #e1445e;
+}
 
 
 /*-------------------------------------------------------------------*/

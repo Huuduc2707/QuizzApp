@@ -1,8 +1,4 @@
 
-
-
-
-
 let starRate = 0;
 // Star rating
 const getRating = document.querySelectorAll("input").forEach(el => {

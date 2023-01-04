@@ -61,7 +61,7 @@ if (!isset($_SESSION['username'])) {
                       <td><?= date_format(date_create($quiz['lastModified']), "d/m/Y H:i:s") ?></td>
                       <td><?= $pA['question_num'] ?></td>
                       <td><?= ($quiz['play_attempt'])?$quiz['play_attempt']:0 ?></td>
-                      <td><?= ($quiz['play_attempt'])?$quiz['avg_score']:0 ?></td>
+                      <td><?= ($quiz['play_attempt'])?number_format($quiz['avg_score'],2):0 ?></td>
                       <td>
                         <a href="./index.php?page=owner_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View

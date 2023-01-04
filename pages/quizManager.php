@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
   // Page
   require_once "./database.php";
   require "../quizApp/assets/components/head.php";
-  $sql = "SELECT * FROM quiz JOIN account ON creatorId = account.id";
+  $sql = "SELECT quiz.id AS id, name, lastModified, dateCreate, username FROM quiz JOIN account ON creatorId = account.id";
   $quizArray = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -45,10 +45,10 @@ if (!isset($_SESSION['username'])) {
                       <td><?= date_format(date_create($quiz['dateCreate']), "d/m/Y")?></td>
                       <td><?= $quiz['username'] ?></td>
                       <td>
-                        <a href="./index.php?page=owner_view_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-success">
+                        <a href="./index.php?page=owner_view_quiz&quizID=<?=$quiz['id']?>" class="btn btn-sm rounded-pill btn-outline-success">
                           View
                         </a>
-                        <a href="index.php?page=edit_quiz&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-primary">
+                        <a href="index.php?page=edit_quiz&quizID=<?=$quiz['id']?>" class="btn btn-sm rounded-pill btn-outline-primary">
                           Edit
                         </a>
                         <a href="./index.php?page=quiz-delete-processing&quizID=<?= $quiz['id'] ?>" class="btn btn-sm rounded-pill btn-outline-danger">
