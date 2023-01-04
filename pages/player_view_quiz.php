@@ -71,7 +71,7 @@
                 <p><?=$overview['description']?></p>
             </div>
             <div class="update">Last update: <?=date_format(date_create($overview['lastModified']), 'd/m/Y H:i:s')?></div>
-            <button class="play-quiz">Play quiz</button>
+            <a href="./index.php?page=play-init-processing&quizID=<?= $quizID ?>"><button class="play-quiz" type="button" style="width:100%">Play quiz</button></a>
         </div>
         <div class="max-score-area">
             <div class="max-score"><?=($analytic['play_attempt']) ? $analytic['max_score'] : 0?> points</div>

@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="email" name="email" class="form-control" placeholder="Email address..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-house"></i>
+                      <i class="bi bi-envelope"></i>
                     </div>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['username'])) {
                   <div class="position-relative">
                     <input type="text" name="nationality" class="form-control" placeholder="Nationality..." id="first-name-icon" required autocomplete="off" />
                     <div class="form-control-icon">
-                      <i class="bi bi-telephone"></i>
+                      <i class="bi bi-globe"></i>
                     </div>
                   </div>
                 </div>

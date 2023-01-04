@@ -84,7 +84,7 @@
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'admin' || $_GET['page'] == 'profile') echo "active" ?>" <?php if ($_SESSION['role'] == 0) echo "hidden" ?>>
               <a href="./index.php?page=admin" class="sidebar-link">
-                <i class="bi bi-shop-window"></i>
+                <i class="bi bi-person-badge-fill"></i>
                 <span>Player manager</span>
               </a>
             </li>
@@ -99,7 +99,7 @@
 
             <li class="sidebar-item <?php if ($_GET['page'] == 'quizManager') echo "active" ?>" <?php if ($_SESSION['role'] == 0) echo "hidden" ?>>
               <a href="./index.php?page=quizManager" class="sidebar-link">
-                <i class="bi bi-shop"></i>
+                <i class="bi bi-clipboard2-check-fill"></i>
                 <span>Quiz manager</span>
               </a>
             </li>

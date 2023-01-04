@@ -10,12 +10,12 @@ if (!isset($_SESSION['username'])) {
           FROM account LEFT JOIN player ON account.id = player.id LEFT JOIN quiz ON quiz.creatorId = account.id LEFT JOIN play_attempt ON play_attempt.playerId = player.id AND play_attempt.quizId = quiz.id 
           WHERE account.id = \"$playerID\"";
   $em = $conn->query($sql)->fetch_all(MYSQLI_ASSOC)[0];
-  $sql = "SELECT name, COUNT(*) AS play_attempt 
-          FROM account JOIN quiz ON account.id = quiz.creatorId JOIN play_attempt ON play_attempt.quizId = quiz.id WHERE account.id = \"$playerID\"
+  $sql = "SELECT name, COUNT(playDateTime) AS play_attempt 
+          FROM account JOIN quiz ON account.id = quiz.creatorId LEFT JOIN play_attempt ON play_attempt.quizId = quiz.id WHERE account.id = \"$playerID\"
           GROUP BY quiz.id ORDER BY play_attempt DESC LIMIT 1";
   $res = $conn->query($sql);
   $exist = 0;
-  if(mysqli_num_rows($res)!=0){
+  if(mysqli_num_rows($res)){
     $exist = 1;
     $highestAttempt = $res->fetch_all(MYSQLI_ASSOC)[0];
   }
@@ -120,7 +120,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="position-relative">
                       <input type="text" id="last-name-column" class="form-control" value="<?= $em['email'] ?>" readonly/>
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="bi bi-envelope"></i>
                       </div>
                     </div>
                   </div>
@@ -132,7 +132,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="position-relative">
                       <input type="text" id="last-name-column" class="form-control" value="<?= $em['nationality'] ?>" readonly />
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-phone"></i>
+                        <i class="bi bi-globe"></i>
                       </div>
                     </div>
                   </div>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="position-relative">
                       <input type="text" id="last-name-column" class="form-control" value="<?= ($em['avg_score'])?$em['play_attempt']:'0' ?>" readonly />
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-dollar-sign"></i>
+                        <i class="bi bi-pencil-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -154,9 +154,9 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Average score for all quizzes</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?= ($em['avg_score'])? $em['avg_score']:0 ?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?= ($em['avg_score'])? number_format($em['avg_score'],2):0 ?>" readonly />
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-star"></i>
                       </div>
                     </div>
                   </div>
@@ -168,7 +168,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="position-relative">
                       <input type="text" id="last-name-column" class="form-control" value="<?= $em['quiz_created'] ?>" readonly />
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="bi bi-question-circle-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -178,9 +178,9 @@ if (!isset($_SESSION['username'])) {
                   <div class="form-group has-icon-left">
                     <label for="first-name-column">Most popular quiz</label>
                     <div class="position-relative">
-                      <input type="text" id="last-name-column" class="form-control" value="<?=($exist)? $highestAttempt['name']." - ".$highestAttempt['play_attempt']." attempts":"No quiz created"?>" readonly />
+                      <input type="text" id="last-name-column" class="form-control" value="<?=($exist)? ($highestAttempt['name']." - ".$highestAttempt['play_attempt']." attempts"):"No quiz created"?>" readonly />
                       <div class="form-control-icon">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="bi bi-1-circle-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -215,7 +215,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="username" class="form-control" value="<?= $em['username'] ?>" id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-solid fa-user"></i>
                             </div>
                           </div>
                         </div>
@@ -229,7 +229,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="password" name="password" class="form-control" value="<?= $em['password'] ?>" id="first-name-icon" required autocomplete="off" />
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="fa-solid fa-lock"></i>
                             </div>
                           </div>
                         </div>
@@ -243,7 +243,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="email" name="email" class="form-control" value="<?= $em['email'] ?>" id="first-name-icon" required autocomplete="off" <?= ($em['role']==1)? "disabled":""?>/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-envelope"></i>
                             </div>
                           </div>
                         </div>
@@ -257,7 +257,7 @@ if (!isset($_SESSION['username'])) {
                           <div class="position-relative">
                             <input type="text" name="nationality" class="form-control" value="<?= $em['nationality'] ?>" id="first-name-icon" required autocomplete="off"  <?= ($em['role']==1)? "disabled":""?>/>
                             <div class="form-control-icon">
-                              <i class="bi bi-telephone"></i>
+                              <i class="bi bi-globe"></i>
                             </div>
                           </div>
                         </div>
