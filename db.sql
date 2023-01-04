@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS rating (
 
 -- create rating table
 CREATE TABLE IF NOT EXISTS play_attempt (
-    id      INT     NOT NULL,
+    id      INT     NOT NULL    AUTO_INCREMENT,
     playerId    INT     NOT NULL,
     quizId      INT     NOT NULL,
     playDateTime    DATETIME    DEFAULT CURRENT_TIMESTAMP,
@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS play_attempt (
 -- create trigger to generate of play_attempt
 -- DROP TRIGGER IF EXISTS generateIdOfPlayAttempt;
 
+-- DELIMITER $$
 -- CREATE TRIGGER `generateIdOfPlayAttempt` BEFORE INSERT ON `play_attempt` 
 -- FOR EACH ROW 
 -- BEGIN 
@@ -126,7 +127,8 @@ CREATE TABLE IF NOT EXISTS play_attempt (
 --     THEN SET NEW.id = 1; 
 --     ELSE SET NEW.id = (SELECT MAX(P.id) + 1 FROM play_attempt P WHERE P.playerId = NEW.playerId AND P.quizId = NEW.quizId); 
 --     END IF; 
--- END
+-- END$$
+-- DELIMITER ;
 
 -- procedure to update quiz's lastModified field
 -- DROP PROCEDURE IF EXISTS updateQuizLastModified;
