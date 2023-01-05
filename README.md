@@ -14,7 +14,7 @@ The code must be stored here to run, other directories are not allowed.
 
 ### Step 4: Click "Admin" button of mySQL to go to its dashboard
 
-### Step 5: Create a database and named it "quizApp"
+### Step 5: Create a database and name it "quizApp"
 
 ### Step 6: Import db.sql file to create the database
 
